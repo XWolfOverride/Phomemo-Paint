@@ -1,0 +1,12 @@
+bin/
+obj/
+publish/
+artifacts/
+.vs/
+.idea/
+*.user
+*.suo
+.DS_Store
+
+# Binario generado por build.ps1
+/PhomemoPaint.exe

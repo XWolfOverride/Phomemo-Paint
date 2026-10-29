@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Phomemo.Printing</RootNamespace>
+    <Version>0.2.0</Version>
+    <Authors>XWolfOverride</Authors>
+
+    <!-- Portable: sin WinForms ni APIs de Windows. No se publica con AOT, pero los analizadores
+         avisan si algo rompe sus limitaciones. -->
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Phomemo.Printing.Tests" />
+  </ItemGroup>
+
+</Project>

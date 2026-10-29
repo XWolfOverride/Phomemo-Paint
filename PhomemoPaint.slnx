@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/Phomemo.Printing/Phomemo.Printing.csproj" />
+  <Project Path="src/Phomemo.Printing.Windows/Phomemo.Printing.Windows.csproj" />
+  <Project Path="src/PhomemoPaint/PhomemoPaint.csproj" />
+  <Project Path="tests/Phomemo.Printing.Tests/Phomemo.Printing.Tests.csproj" />
+</Solution>
