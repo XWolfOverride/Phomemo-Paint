@@ -89,6 +89,45 @@ public sealed class PhomemoPrinter
         return await DrainAsync(idle, TimeSpan.Zero, idle * 4, ct).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// Pregunta número de serie, firmware, batería, papel y tapa (o solo la batería) y devuelve lo
+    /// que conteste. Mandarlo solo a dispositivos que se sabe o se sospecha que son impresoras
+    /// de esta marca.
+    /// </summary>
+    public async Task<PrinterInfo> QueryInfoAsync(bool batteryOnly = false, CancellationToken ct = default)
+    {
+        byte[][] queries = batteryOnly
+            ? [[0x1F, 0x11, 0x08]]
+            : [[0x1F, 0x11, 0x09], [0x1F, 0x11, 0x07], [0x1F, 0x11, 0x08], [0x1F, 0x11, 0x11], [0x1F, 0x11, 0x12]];
+        await EnsureOpenAsync(ct).ConfigureAwait(false);
+        await ReadPendingAsync(ct).ConfigureAwait(false);
+        foreach (var q in queries)
+        {
+            await _transport.WriteAsync(q, ct).ConfigureAwait(false);
+            await Task.Delay(100, ct).ConfigureAwait(false);
+        }
+        var idle = TimeSpan.FromMilliseconds(700);
+        var response = await DrainAsync(idle, TimeSpan.Zero, TimeSpan.FromSeconds(4), ct).ConfigureAwait(false);
+        return PrinterInfo.From(response);
+    }
+
+    /// <summary>
+    /// Pregunta por el papel (<c>1F 11 11</c>) y la tapa (<c>1F 11 12</c>) justo antes de imprimir:
+    /// sin papel o con la tapa abierta la impresora acepta el trabajo en silencio y no avisa.
+    /// <see cref="PrinterInfo.PaperOut"/> y <see cref="PrinterInfo.CoverOpen"/> quedan null si no
+    /// contesta (modelos que no lo admiten).
+    /// </summary>
+    public async Task<PrinterInfo> QueryReadyAsync(CancellationToken ct = default)
+    {
+        await EnsureOpenAsync(ct).ConfigureAwait(false);
+        await ReadPendingAsync(ct).ConfigureAwait(false);
+        await _transport.WriteAsync(new byte[] { 0x1F, 0x11, 0x11 }, ct).ConfigureAwait(false);
+        await Task.Delay(100, ct).ConfigureAwait(false);
+        await _transport.WriteAsync(new byte[] { 0x1F, 0x11, 0x12 }, ct).ConfigureAwait(false);
+        var idle = TimeSpan.FromMilliseconds(400);
+        return PrinterInfo.From(await DrainAsync(idle, TimeSpan.Zero, TimeSpan.FromSeconds(2), ct).ConfigureAwait(false));
+    }
+
     /// <summary>Lo que ya esté recibido, sin esperar.</summary>
     private async Task<byte[]> ReadPendingAsync(CancellationToken ct)
     {

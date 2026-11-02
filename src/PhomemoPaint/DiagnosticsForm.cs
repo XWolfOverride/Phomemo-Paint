@@ -31,6 +31,7 @@ internal sealed class DiagnosticsForm : Form
         _port = port;
         _model = model;
         Text = $"{S.DiagTitle} — {port}";
+        Icon = AppIcon.Icon;
         Size = new Size(640, 520);
         StartPosition = FormStartPosition.CenterParent;
         MinimizeBox = false;
@@ -99,6 +100,16 @@ internal sealed class DiagnosticsForm : Form
         {
             _send.Enabled = true;
         }
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    {
+        if (keyData == Keys.F1)
+        {
+            HelpViewer.Show(this, "diagnostico");
+            return true;
+        }
+        return base.ProcessCmdKey(ref msg, keyData);
     }
 
     internal static bool TryParseHex(string line, out byte[] bytes)

@@ -29,6 +29,11 @@ public enum MediaType : byte
 /// <param name="FeedLines">Avance tras imprimir para poder cortar.</param>
 /// <param name="Verified">Datos comprobados con hardware real o con fuentes coincidentes.</param>
 /// <param name="Experimental">Protocolo implementado sin poder probarlo.</param>
+/// <param name="RequiresCompression">
+/// Se ha detectado que el modelo trabaja con los datos comprimidos (LZO, <c>1F 11 35 01</c>), que
+/// esta biblioteca no implementa: no se puede imprimir en él.
+/// </param>
+/// <param name="DefaultDarkness">Densidad si el trabajo no indica otra; null = la de la familia.</param>
 public sealed record PrinterModel(
     string Id,
     string DisplayName,
@@ -39,8 +44,13 @@ public sealed record PrinterModel(
     double DefaultMediaWidthMm,
     int FeedLines,
     bool Verified,
-    bool Experimental)
+    bool Experimental,
+    bool RequiresCompression = false,
+    int? DefaultDarkness = null)
 {
+    /// <summary>Se puede generar un trabajo para este modelo.</summary>
+    public bool CanPrint => !RequiresCompression;
+
     public double DotsPerMm => Dpi / 25.4;
 
     public double HeadWidthMm => HeadWidthDots / DotsPerMm;

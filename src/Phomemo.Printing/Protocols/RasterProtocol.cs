@@ -21,6 +21,8 @@ public abstract class RasterProtocol : IPrinterProtocol
         ArgumentNullException.ThrowIfNull(options);
         if (model.Family != Family)
             throw new ArgumentException($"{model.Id} usa el protocolo {model.Family}, no {Family}.", nameof(model));
+        if (model.RequiresCompression)
+            throw new NotSupportedException($"{model.Id} necesita datos comprimidos (LZO), que no están implementados.");
 
         image = image.WithWidth(TargetWidth(image, model));
         var chunks = new List<ReadOnlyMemory<byte>> { Header(model, options) };
@@ -63,12 +65,14 @@ public sealed class M02Protocol : RasterProtocol
 
     protected override int MaxLinesPerBlock => 255;
 
+    // Cabecera ampliada: densidad, coeficiente de calor, tipo de papel y sin compresión.
     protected override byte[] Header(PrinterModel model, PrintOptions options) =>
     [
-        ESC, 0x40,              // ESC @: inicializar
-        ESC, 0x61, 0x00,        // ESC a 0: justificación izquierda
-        US, 0x11, 0x37, 0x64,   // coeficiente de calor 100 % (150 = 0x96 da más negro)
-        US, 0x11, 0x02, (byte)Math.Clamp(options.Darkness ?? 4, 1, 4), // densidad 1-4 (4 por defecto)
+        ESC, 0x40,                                                          // ESC @: inicializar
+        US, 0x11, 0x02, (byte)Math.Clamp(options.Darkness ?? model.DefaultDarkness ?? 4, 1, 15), // densidad (4 salvo modelo)
+        US, 0x11, 0x37, (byte)Math.Clamp(options.HeatCoefficient ?? 100, 1, 255), // coeficiente de calor
+        US, 0x11, options.Media == MediaType.LabelWithMarks ? (byte)0x26 : (byte)0x0B, // papel: rollo o marcas
+        US, 0x11, 0x35, 0x00,                                               // datos sin comprimir
     ];
 
     // Solo el avance. La impresora responde 1A 0F 0C al terminar.

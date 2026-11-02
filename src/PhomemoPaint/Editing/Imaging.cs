@@ -92,35 +92,52 @@ internal static class Imaging
     /// </summary>
     public static void ToBlackAndWhite(Bitmap bmp, MonoConversion mode, int threshold = 128)
     {
+        // El resultado tiene tres estados: negro, blanco y transparente. Con tramado se difunde el
+        // error por separado en la opacidad (qué puntos tapan) y en el gris (de qué color son), así
+        // un degradado de transparencia sale como puntos cada vez más espaciados.
         int w = bmp.Width, h = bmp.Height;
         var px = ReadPixels(bmp);
         var gray = new float[w * h];
+        var alpha = new float[w * h];
         for (int i = 0; i < px.Length; i++)
-            gray[i] = Gray(px[i]);
+        {
+            int c = px[i];
+            gray[i] = (((c >> 16) & 0xFF) * 299 + ((c >> 8) & 0xFF) * 587 + (c & 0xFF) * 114) / 1000f;
+            alpha[i] = ((c >> 24) & 0xFF) / 255f;
+        }
+        bool dither = mode == MonoConversion.Dither;
 
         for (int y = 0; y < h; y++)
         {
             for (int x = 0; x < w; x++)
             {
                 int i = y * w + x;
-                if (((px[i] >> 24) & 0xFF) < 128)
+                bool opaque = alpha[i] >= 0.5f;
+                if (dither)
+                    Spread(alpha, x, y, alpha[i] - (opaque ? 1 : 0));
+                if (!opaque)
                 {
                     px[i] = 0;
                     continue;
                 }
                 bool black = gray[i] < threshold;
                 px[i] = black ? Black : White;
-                if (mode != MonoConversion.Dither) continue;
-                float err = gray[i] - (black ? 0 : 255);
-                Spread(x + 1, y, 7f / 16);
-                Spread(x - 1, y + 1, 3f / 16);
-                Spread(x, y + 1, 5f / 16);
-                Spread(x + 1, y + 1, 1f / 16);
+                if (dither)
+                    Spread(gray, x, y, gray[i] - (black ? 0 : 255));
+            }
+        }
 
-                void Spread(int sx, int sy, float f)
-                {
-                    if (sx >= 0 && sx < w && sy < h) gray[sy * w + sx] += err * f;
-                }
+        // Floyd-Steinberg.
+        void Spread(float[] values, int x, int y, float err)
+        {
+            Add(x + 1, y, 7f / 16);
+            Add(x - 1, y + 1, 3f / 16);
+            Add(x, y + 1, 5f / 16);
+            Add(x + 1, y + 1, 1f / 16);
+
+            void Add(int sx, int sy, float f)
+            {
+                if (sx >= 0 && sx < w && sy < h) values[sy * w + sx] += err * f;
             }
         }
 
@@ -147,6 +164,40 @@ internal static class Imaging
     }
 
     /// <summary>Abre una imagen sin dejar el fichero bloqueado.</summary>
+    /// <summary>
+    /// Imagen del portapapeles respetando la transparencia. El formato de mapa de bits de Windows
+    /// (el de <see cref="Clipboard.GetImage"/>) no lleva alfa y lo transparente sale negro; los
+    /// navegadores y muchos programas ponen además una copia "PNG" que sí la conserva.
+    /// </summary>
+    public static Bitmap? FromClipboard()
+    {
+        var data = Clipboard.GetDataObject();
+        if (data is null) return null;
+        foreach (var format in new[] { "PNG", "image/png" })
+        {
+            if (!data.GetDataPresent(format)) continue;
+            try
+            {
+                using var stream = data.GetData(format) switch
+                {
+                    MemoryStream ms => new MemoryStream(ms.ToArray()),
+                    byte[] bytes => new MemoryStream(bytes),
+                    _ => null,
+                };
+                if (stream is null) continue;
+                using var img = Image.FromStream(stream);
+                return CopyArgb(img);
+            }
+            catch (ArgumentException)
+            {
+                // No es un PNG válido: se prueba el siguiente formato.
+            }
+        }
+        if (!Clipboard.ContainsImage()) return null;
+        using var fallback = Clipboard.GetImage();
+        return fallback is null ? null : CopyArgb(fallback);
+    }
+
     public static Bitmap Load(string path)
     {
         using var stream = new MemoryStream(File.ReadAllBytes(path));

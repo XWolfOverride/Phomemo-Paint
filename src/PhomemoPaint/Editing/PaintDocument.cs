@@ -5,12 +5,14 @@ namespace PhomemoPaint.Editing;
 
 /// <summary>
 /// Lo que se está dibujando: una capa de píxeles en blanco y negro con el ancho del cabezal y
-/// el alto que elige el usuario, más las imágenes flotantes que aún no se han fijado.
+/// el alto que elige el usuario, más los objetos flotantes que aún no se han fijado.
 /// </summary>
 internal sealed class PaintDocument : IDisposable
 {
     public const int DefaultHeight = 400;
     public const int MaxHeight = 20000;
+
+    private ImageObject? _activeInk;
 
     public PaintDocument(int width, int height)
     {
@@ -27,6 +29,16 @@ internal sealed class PaintDocument : IDisposable
     public List<ImageObject> Objects { get; } = [];
 
     public ImageObject? Selected { get; set; }
+
+    /// <summary>
+    /// Grupo de trazos que sigue creciendo con el pincel. Se cierra al cambiar de herramienta, con
+    /// Esc o con Intro; un objeto que ya no esté en el documento no cuenta.
+    /// </summary>
+    public ImageObject? ActiveInk
+    {
+        get => _activeInk is not null && Objects.Contains(_activeInk) ? _activeInk : null;
+        set => _activeInk = value;
+    }
 
     /// <summary>Filas que se imprimirían (hasta la última con tinta). Ver <see cref="UpdateInkExtent"/>.</summary>
     public int PrintHeight { get; private set; }
@@ -119,37 +131,18 @@ internal sealed class PaintDocument : IDisposable
 
     public ImageObject? HitTest(PointF p) => Objects.LastOrDefault(o => o.Contains(p));
 
-    /// <summary>Trazo de pincel redondo entre dos puntos (centros de píxel), sin suavizado.</summary>
-    public void Stroke(PointF from, PointF to, int size, bool black)
+    /// <summary>Trazo nuevo en el grupo abierto o, si no hay, en uno nuevo encima de todo.</summary>
+    public ImageObject BeginStroke(PointF point, int size, bool black)
     {
-        using var g = Graphics.FromImage(Layer);
-        g.SmoothingMode = SmoothingMode.None;
-        g.PixelOffsetMode = PixelOffsetMode.Half;
-        var color = black ? Color.Black : Color.White;
-        if (size <= 2)
+        var ink = ActiveInk;
+        if (ink is null)
         {
-            // GDI+ no pinta elipses de 1-2 px de forma fiable: cuadrados a lo largo del trazo.
-            using var brush = new SolidBrush(color);
-            int steps = (int)Math.Ceiling(Math.Max(Math.Abs(to.X - from.X), Math.Abs(to.Y - from.Y)));
-            for (int i = 0; i <= steps; i++)
-            {
-                float t = steps == 0 ? 0 : (float)i / steps;
-                int x = (int)Math.Floor(from.X + (to.X - from.X) * t - (size - 1) / 2f);
-                int y = (int)Math.Floor(from.Y + (to.Y - from.Y) * t - (size - 1) / 2f);
-                g.FillRectangle(brush, x, y, size, size);
-            }
-            return;
+            ink = ImageObject.NewInk();
+            Objects.Add(ink);
+            ActiveInk = ink;
         }
-        using (var b = new SolidBrush(color))
-        {
-            g.FillEllipse(b, from.X - size / 2f, from.Y - size / 2f, size, size);
-            g.FillEllipse(b, to.X - size / 2f, to.Y - size / 2f, size, size);
-        }
-        if (from != to)
-        {
-            using var pen = new Pen(color, size) { StartCap = LineCap.Round, EndCap = LineCap.Round, LineJoin = LineJoin.Round };
-            g.DrawLine(pen, from, to);
-        }
+        ink.BeginStroke(point, size, black);
+        return ink;
     }
 
     private static void DrawObject(Graphics g, ImageObject obj)
@@ -160,7 +153,8 @@ internal sealed class PaintDocument : IDisposable
     }
 
     public Snapshot TakeSnapshot() =>
-        new(Imaging.ToMono(Layer), Objects.Select(o => o.Clone()).ToList(), Selected is null ? -1 : Objects.IndexOf(Selected));
+        new(Imaging.ToMono(Layer), Objects.Select(o => o.Clone()).ToList(), Selected is null ? -1 : Objects.IndexOf(Selected),
+            ActiveInk is null ? -1 : Objects.IndexOf(ActiveInk));
 
     public void Restore(Snapshot s)
     {
@@ -169,6 +163,7 @@ internal sealed class PaintDocument : IDisposable
         Objects.Clear();
         Objects.AddRange(s.Objects.Select(o => o.Clone()));
         Selected = s.SelectedIndex >= 0 && s.SelectedIndex < Objects.Count ? Objects[s.SelectedIndex] : null;
+        ActiveInk = s.ActiveInkIndex >= 0 && s.ActiveInkIndex < Objects.Count ? Objects[s.ActiveInkIndex] : null;
     }
 
     public void Dispose()
@@ -178,7 +173,7 @@ internal sealed class PaintDocument : IDisposable
     }
 
     /// <summary>Estado para deshacer. La capa se guarda a 1 bit para no gastar memoria.</summary>
-    public sealed record Snapshot(MonoBitmap Layer, List<ImageObject> Objects, int SelectedIndex);
+    public sealed record Snapshot(MonoBitmap Layer, List<ImageObject> Objects, int SelectedIndex, int ActiveInkIndex);
 }
 
 /// <summary>Deshacer / rehacer con instantáneas.</summary>

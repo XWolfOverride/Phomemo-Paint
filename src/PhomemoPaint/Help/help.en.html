@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhomemoPaint help</title>
+<link rel="icon" href="Phome.ico">
+<link rel="stylesheet" href="ayuda.css">
+</head>
+<body>
+
+<nav>
+  <div class="brand"><img src="Phome.ico" alt="">PhomemoPaint</div>
+  <ol>
+    <li><a href="#inicio">Getting started</a></li>
+    <li class="group">The window</li>
+    <li><a href="#ventana">Window layout</a></li>
+    <li><a href="#herramientas">Tools</a></li>
+    <li><a href="#propiedades">Properties</a></li>
+    <li><a href="#impresora">Printer</a></li>
+    <li><a href="#zoom">Zoom</a></li>
+    <li class="group">Drawing</li>
+    <li><a href="#lienzo">The canvas</a></li>
+    <li><a href="#pincel">Brush</a></li>
+    <li><a href="#imagenes">Images</a></li>
+    <li><a href="#texto">Text</a></li>
+    <li><a href="#blanco-negro">Black and white</a></li>
+    <li class="group">Printing and saving</li>
+    <li><a href="#imprimir">Printing</a></li>
+    <li><a href="#avisos">Warnings</a></li>
+    <li><a href="#archivos">Files</a></li>
+    <li><a href="#calibracion">Calibration pattern</a></li>
+    <li><a href="#diagnostico">Signal diagnostics</a></li>
+    <li class="group">Reference</li>
+    <li><a href="#trucos">Tips and shortcuts</a></li>
+    <li><a href="#problemas">Troubleshooting</a></li>
+    <li><a href="#acerca">About</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<h1>PhomemoPaint help</h1>
+<p class="subtitle">Draw in black and white and print on Phomemo thermal printers, no drivers needed.</p>
+
+<section id="inicio">
+<h2>Getting started</h2>
+<ol class="steps">
+  <li><strong>Turn the printer on.</strong> There is no need to pair it in Windows: PhomemoPaint looks for it
+    over Bluetooth when it starts and selects it. It shows up in the <a href="#impresora">Printer</a> panel as
+    “T02 — Bluetooth …”.</li>
+  <li><strong>Draw.</strong> Paint with the brush <span class="i on">&#xE70F;</span>, paste an image with
+    <kbd>Ctrl</kbd>+<kbd>V</kbd> or drop an image file on the window.</li>
+  <li><strong>Set the length</strong> of the paper by dragging the blue line at the end of the canvas.</li>
+  <li><strong>Print</strong> with <span class="i print">&#xE749;</span> or <kbd>Ctrl</kbd>+<kbd>P</kbd>.
+    Only up to the last line with something drawn is printed, to save paper.</li>
+</ol>
+<div class="tip">Press <kbd>F1</kbd> with the mouse over any part of the window (canvas, tools, printer…) and this
+  help opens right at that section.</div>
+</section>
+
+<section id="ventana">
+<h2>Window layout</h2>
+<figure class="schema">
+<svg viewBox="0 0 860 700" role="group" aria-label="Diagram of the PhomemoPaint window, with the canvas on the left and the tools column on the right" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="tramado" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path fill="#000" d="M0 0h2v2H0zM2 2h2v2H2z"/>
+    </pattern>
+  </defs>
+
+  <!-- Ventana -->
+  <rect class="s-window" width="860" height="700"/>
+  <rect class="s-title" width="860" height="30"/>
+  <image href="Phome.ico" x="8" y="6" width="18" height="18"/>
+  <text x="32" y="20">PhomemoPaint</text>
+  <text class="s-icon" x="768" y="20">&#xE921;</text>
+  <text class="s-icon" x="800" y="20">&#xE922;</text>
+  <text class="s-icon" x="832" y="20">&#xE8BB;</text>
+
+  <!-- Menú -->
+  <text x="12" y="48">File</text>
+  <text x="52" y="48">Edit</text>
+  <text x="92" y="48">View</text>
+  <text x="138" y="48">Printer</text>
+  <text x="202" y="48">Help</text>
+
+  <!-- Lienzo -->
+  <rect class="s-margin" x="26" y="76" width="542" height="598"/>
+  <rect class="s-track" x="568" y="56" width="12" height="618"/>
+  <rect class="s-thumb" x="571" y="60" width="6" height="280" rx="3"/>
+  <rect class="s-ruler" y="56" width="568" height="20"/>
+  <rect class="s-ruler" y="56" width="26" height="618"/>
+  <path class="s-tick" d="M26 66v10M66 70v6M106 66v10M146 70v6M186 66v10M226 70v6M266 66v10M306 70v6M346 66v10M386 70v6M410 56v20M0 76h26M16 116h10M6 156h20M16 196h10M6 236h20M16 276h10M6 316h20M16 356h10M6 396h20M16 436h10M6 476h20M16 516h10M6 556h20M16 596h10M6 636h20"/>
+  <text class="s-small" x="4" y="70">mm</text>
+  <text class="s-small" x="29" y="66">0</text>
+  <text class="s-small" x="109" y="66">10</text>
+  <text class="s-small" x="189" y="66">20</text>
+  <text class="s-small" x="269" y="66">30</text>
+  <text class="s-small" x="349" y="66">40</text>
+  <text class="s-small" x="6" y="88">0</text>
+  <text class="s-small" x="6" y="168">10</text>
+  <text class="s-small" x="6" y="248">20</text>
+  <text class="s-small" x="6" y="328">30</text>
+  <text class="s-small" x="6" y="408">40</text>
+  <text class="s-small" x="6" y="488">50</text>
+  <rect class="s-paper" x="26" y="76" width="384" height="400"/>
+
+  <!-- Contenido de ejemplo: imagen tramada, texto y trazos a pincel -->
+  <circle cx="200" cy="158" r="18" fill="url(#tramado)"/>
+  <path fill="#000" d="M74 256 138 150l36 58 22-30 50 78z"/>
+  <text class="s-sample" x="70" y="330">Hello!</text>
+  <path class="s-ink" d="M72 372c30-26 46-28 62-6s34 22 54 0 40-20 58 0 42 18 70-8"/>
+
+  <!-- Objeto seleccionado, con sus tiradores -->
+  <path class="s-sel" d="M158 120V100M70 120h180v140H70z"/>
+  <circle class="s-grip" cx="158" cy="95" r="5"/>
+  <path class="s-grip" d="M66.5 116.500h7v7h-7zM154.5 116.500h7v7h-7zM246.5 116.500h7v7h-7zM66.5 186.500h7v7h-7zM246.5 186.500h7v7h-7zM66.5 256.500h7v7h-7zM154.5 256.500h7v7h-7zM246.5 256.500h7v7h-7z"/>
+
+  <!-- Hasta dónde se imprime y final del papel -->
+  <path class="s-extent" d="M26 400H418"/>
+  <path class="s-length" d="M26 476H418"/>
+  <rect class="s-handle" x="198" y="471" width="40" height="10" rx="2"/>
+  <rect class="s-field" x="246" y="484" width="66" height="24"/>
+  <text x="252" y="501">400</text>
+  <text class="s-icon s-tiny" x="298" y="500">&#xE70D;</text>
+  <text class="s-onmargin" x="318" y="501">pt · 50.0 mm</text>
+
+  <!-- Herramientas -->
+  <rect class="s-swatch-on" x="582" y="101" width="36" height="36"/>
+  <rect class="s-swatch" x="584" y="103" width="32" height="32" fill="#000"/>
+  <rect class="s-swatch" x="620" y="103" width="32" height="32" fill="#fff"/>
+  <rect class="s-field" x="622" y="69" width="46" height="27"/>
+  <text x="628" y="88">12</text>
+  <text class="s-icon s-tiny" x="654" y="87">&#xE70D;</text>
+
+  <!-- Propiedades -->
+  <rect class="s-section" x="584.5" y="143.5" width="271" height="92"/>
+  <text class="s-head" x="594" y="165">Properties</text>
+  <text x="594" y="187">Black and white conversion:</text>
+  <rect class="s-field" x="594" y="196" width="130" height="28"/>
+  <text x="600" y="215">Dither</text>
+  <text class="s-icon s-tiny" x="708" y="214">&#xE70D;</text>
+
+  <!-- Impresora -->
+  <rect class="s-section" x="584.5" y="241.5" width="271" height="368"/>
+  <text class="s-head" x="594" y="263">Printer</text>
+  <rect class="s-field" x="594" y="274" width="210" height="28"/>
+  <text x="600" y="293">T02 — Bluetooth</text>
+  <text class="s-icon s-tiny" x="788" y="292">&#xE70D;</text>
+  <rect class="s-button" x="808" y="270" width="36" height="36"/>
+  <text class="s-icon s-big" x="826" y="295">&#xE72C;</text>
+  <rect class="s-field" x="594" y="310" width="250" height="28"/>
+  <text x="600" y="329">Phomemo T02</text>
+  <text class="s-icon s-tiny" x="828" y="328">&#xE70D;</text>
+  <g class="s-caption">
+    <text x="594" y="364">Connection</text>
+    <text x="594" y="388">Address</text>
+    <text x="594" y="412">Serial no.</text>
+    <text x="594" y="436">Firmware</text>
+    <text x="594" y="460">Battery</text>
+    <text x="594" y="484">Paper</text>
+    <text x="594" y="508">Cover</text>
+    <text x="594" y="532">Read at</text>
+  </g>
+  <text x="688" y="364">Bluetooth LE</text>
+  <text x="688" y="388">—</text>
+  <text x="688" y="412">—</text>
+  <text x="688" y="436">—</text>
+  <text x="688" y="460">—</text>
+  <text x="688" y="484">—</text>
+  <text x="688" y="508">—</text>
+  <text x="688" y="532">—</text>
+  <rect class="s-button" x="770" y="550" width="36" height="26"/>
+  <text class="s-icon" x="788" y="568">&#xE72C;</text>
+
+  <!-- Zoom -->
+  <rect class="s-button" x="671" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="689" y="661">&#xE71F;</text>
+  <rect class="s-field" x="711" y="641" width="60" height="27"/>
+  <text x="717" y="660">×1</text>
+  <text class="s-icon s-tiny" x="756" y="659">&#xE70D;</text>
+  <rect class="s-button" x="775" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="793" y="661">&#xE8A3;</text>
+  <rect class="s-button" x="815" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="833" y="661">&#xE9A6;</text>
+
+  <!-- Barra de estado -->
+  <rect class="s-title" y="674" width="860" height="26"/>
+  <text class="s-status" x="12" y="692">160, 200  (20.0, 25.0 mm)</text>
+  <text class="s-status" x="190" y="692">Prints 324 lines (40.5 mm)</text>
+  <rect class="s-warn" x="420" y="677" width="220" height="20"/>
+  <text class="s-icon s-tiny" x="434" y="691">&#xE7BA;</text>
+  <text class="s-status" x="446" y="692">Warnings show here, in yellow</text>
+
+  <!-- Zonas enlazadas; los botones de herramientas van encima de la suya -->
+  <a href="#archivos"><title>Menus</title><rect class="s-zone" y="30" width="860" height="26"/><circle class="s-num" cx="350" cy="43" r="11"/><text class="s-n" x="350" y="47.5">1</text></a>
+  <a href="#lienzo"><title>Grey margin</title><path class="s-zone" d="M26 476h542v198H26zM410 76h158v400H410z"/><circle class="s-num" cx="218" cy="590" r="11"/><text class="s-n" x="218" y="594.5">7</text></a>
+  <a href="#lienzo"><title>Rulers</title><path class="s-zone" d="M0 56h568v20H26v598H0z"/><circle class="s-num" cx="13" cy="130" r="11"/><text class="s-n" x="13" y="134.5">2</text></a>
+  <a href="#lienzo"><title>Paper</title><rect class="s-zone" x="26" y="76" width="384" height="400"/><circle class="s-num" cx="384" cy="102" r="11"/><text class="s-n" x="384" y="106.5">3</text></a>
+  <a href="#imagenes"><title>Selected object</title><rect class="s-zone" x="62" y="88" width="196" height="180"/><circle class="s-num" cx="278" cy="134" r="11"/><text class="s-n" x="278" y="138.5">4</text></a>
+  <a href="#lienzo"><title>Orange line</title><rect class="s-zone" x="26" y="392" width="426" height="16"/><circle class="s-num" cx="436" cy="400" r="11"/><text class="s-n" x="436" y="404.5">5</text></a>
+  <a href="#lienzo"><title>Blue line</title><path class="s-zone" d="M26 468h426v42H26z"/><circle class="s-num" cx="436" cy="476" r="11"/><text class="s-n" x="436" y="480.5">6</text></a>
+
+  <a href="#herramientas"><title>Tools</title><rect class="s-zone" x="580" y="56" width="280" height="84"/><circle class="s-num" cx="678" cy="119" r="11"/><text class="s-n" x="678" y="123.5">8</text></a>
+  <a href="#pincel"><title>Brush</title><rect class="s-button" x="584" y="60" width="36" height="36"/><text class="s-icon s-big" x="602" y="84">&#xE70F;</text></a>
+  <a href="#imagenes"><title>Insert image</title><rect class="s-button" x="678" y="60" width="36" height="36"/><text class="s-icon s-big" x="696" y="84">&#xEB9F;</text></a>
+  <a href="#imagenes"><title>Paste</title><rect class="s-button" x="718" y="60" width="36" height="36"/><text class="s-icon s-big" x="736" y="84">&#xE77F;</text></a>
+  <a href="#texto"><title>Text</title><rect class="s-button" x="758" y="60" width="36" height="36"/><text class="s-icon s-big" x="776" y="84">&#xE8D2;</text></a>
+  <a href="#imprimir"><title>Print</title><rect class="s-button s-print" x="811" y="60" width="42" height="76"/><text class="s-icon s-huge" x="832" y="107">&#xE749;</text></a>
+  <a href="#herramientas"><title>Cursor</title><rect class="s-button s-on" x="703" y="103" width="32" height="32"/><text class="s-icon" x="719" y="125">&#xE8B0;</text></a>
+  <a href="#herramientas"><title>Fix</title><rect class="s-button" x="739" y="103" width="32" height="32"/><text class="s-icon" x="755" y="125">&#xE73E;</text></a>
+  <a href="#herramientas"><title>Delete</title><rect class="s-button" x="775" y="103" width="32" height="32"/><text class="s-icon" x="791" y="125">&#xE74D;</text></a>
+
+  <a href="#propiedades"><title>Properties</title><rect class="s-zone" x="584" y="143" width="272" height="93"/><circle class="s-num" cx="836" cy="165" r="11"/><text class="s-n" x="836" y="169.5">9</text></a>
+  <a href="#impresora"><title>Printer</title><rect class="s-zone" x="584" y="241" width="272" height="369"/><circle class="s-num" cx="834" cy="258" r="11"/><text class="s-n" x="834" y="262.5">10</text></a>
+  <a href="#zoom"><title>Zoom</title><rect class="s-zone" x="584" y="634" width="272" height="40"/><circle class="s-num" cx="640" cy="654" r="11"/><text class="s-n" x="640" y="658.5">11</text></a>
+  <a href="#avisos"><title>Status bar</title><rect class="s-zone" y="674" width="860" height="26"/><circle class="s-num" cx="836" cy="687" r="11"/><text class="s-n" x="836" y="691.5">12</text></a>
+</svg>
+<figcaption>Diagram of the window. Click an area or a button to go to its section.</figcaption>
+</figure>
+<ol class="callouts">
+  <li><strong>Menus</strong>: <a href="#archivos">File</a>, Edit, View, <a href="#impresora">Printer</a> and Help.</li>
+  <li><strong>Rulers</strong> in millimetres, along the top and left.</li>
+  <li><strong>Paper</strong>: <a href="#lienzo">the canvas</a>, with what you have drawn.</li>
+  <li><strong>Selected object</strong>, with its handles: an <a href="#imagenes">image</a> or a <a href="#texto">text</a>. A <a href="#pincel">drawing</a> can only be moved and has no handles.</li>
+  <li><strong>Orange line</strong>: how far would be printed.</li>
+  <li><strong>Blue line</strong>: the end of the paper. Drag it to change the length, or type it in the box next to it.</li>
+  <li><strong>Grey margin</strong>: it is not paper and is not printed.</li>
+  <li><a href="#herramientas"><strong>Tools</strong></a>: brush, images, text, cursor, colours and print.</li>
+  <li><a href="#propiedades"><strong>Properties</strong></a> of the selection.</li>
+  <li><a href="#impresora"><strong>Printer</strong></a>: which one is used, its model and its details.</li>
+  <li><a href="#zoom"><strong>Zoom</strong></a>.</li>
+  <li><strong>Status bar</strong>: mouse position in dots and millimetres, how much would be printed, yellow <a href="#avisos">warnings</a> and messages from the printer.</li>
+</ol>
+</section>
+
+<section id="herramientas">
+<h2><span class="i">&#xE70F;</span> Tools</h2>
+<table>
+  <tr><th>Button</th><th>What it does</th></tr>
+  <tr><td><span class="i on">&#xE70F;</span> Brush</td><td>Draws by hand; it always paints, also on top of objects. The application starts with this tool. <kbd>B</kbd></td></tr>
+  <tr><td><span class="i">&#xEB9F;</span> Insert image</td><td>Opens an image file (PNG, JPG, BMP, GIF). <kbd>Ctrl</kbd>+<kbd>I</kbd></td></tr>
+  <tr><td><span class="i">&#xE77F;</span> Paste</td><td>Pastes the image on the clipboard. <kbd>Ctrl</kbd>+<kbd>V</kbd></td></tr>
+  <tr><td><span class="i">&#xE8D2;</span> Text</td><td>Places text: choose the tool and click on the canvas. <kbd>Ctrl</kbd>+<kbd>T</kbd></td></tr>
+  <tr><td><span class="i">&#xE8B0;</span> Cursor</td><td>Selects, moves and adjusts images, texts and drawings without painting anything. <kbd>V</kbd></td></tr>
+  <tr><td><span class="i">&#xE73E;</span> Fix</td><td>Merges the selected object into the paper; it can no longer be moved. <kbd>Enter</kbd></td></tr>
+  <tr><td><span class="i">&#xE74D;</span> Delete</td><td>Removes the selected object. <kbd>Del</kbd></td></tr>
+  <tr><td><span class="i print">&#xE749;</span> Print</td><td>Sends the drawing to the printer. While printing it becomes
+    <span class="i">&#xE711;</span> Cancel. <kbd>Ctrl</kbd>+<kbd>P</kbd></td></tr>
+  <tr><td><span class="swatch black"></span> <span class="swatch white"></span> Colours</td><td>Colour of the left mouse button. The right button always paints with the other one.</td></tr>
+  <tr><td>Brush</td><td>Brush size, from 1 to 64 dots.</td></tr>
+</table>
+<p>Fix and Delete act on the selected object or, with the brush, on the drawing in progress.</p>
+</section>
+
+<section id="propiedades">
+<h2>Properties</h2>
+<p>Shows the options of whatever is selected. With an image selected you can choose how it is turned into black and
+  white (<a href="#blanco-negro">Dither or Threshold</a>). With a text, its content and format (<a href="#texto">Text</a>). With nothing selected, the panel says so.</p>
+</section>
+
+<section id="impresora">
+<h2><span class="i">&#xE749;</span> Printer</h2>
+<h3>Choosing the printer</h3>
+<ul>
+  <li>The first list holds the <strong>Bluetooth</strong> printers found and the <strong>COM ports</strong>.
+    Bluetooth printers are searched for a few seconds when the window opens; <span class="i">&#xE72C;</span>
+    searches again. Printers seen before are remembered.</li>
+  <li>There is no need to pair the printer in Windows (it is Bluetooth LE and Windows does not list it).</li>
+  <li>The second list is the <strong>model</strong>. It is usually picked for you (from the Bluetooth name, the USB
+    identifier or the serial number), but you can change it.</li>
+  <li>Label models (M110 family) also show the <strong>label width</strong> in mm.</li>
+</ul>
+<div class="warn">The <strong>T02 only prints over Bluetooth</strong>. Over USB it answers queries but the paper comes
+  out blank. If the same printer is seen over USB and Bluetooth, PhomemoPaint picks Bluetooth.</div>
+<h3>Printer information</h3>
+<p>When the printer is selected it is asked for its serial number, firmware, battery, paper and cover. The battery is
+  read again every 5 minutes; the refresh button on that panel asks right away. Searching never sends anything to any device:
+  only the printer you choose is queried.</p>
+<h3>Models that cannot print yet</h3>
+<p>Some A4 models are listed as “needs compression, cannot print”: you can pick them to draw at their width, but the
+  Print button is disabled.</p>
+</section>
+
+<section id="zoom">
+<h2><span class="i">&#xE8A3;</span> Zoom</h2>
+<p><span class="i">&#xE71F;</span> zooms out, <span class="i">&#xE8A3;</span> zooms in (×1 to ×8) and
+  <span class="i">&#xE9A6;</span> fits the canvas to the window width. Also with <kbd>Ctrl</kbd>+mouse wheel,
+  <kbd>Ctrl</kbd>+<kbd>+</kbd>, <kbd>Ctrl</kbd>+<kbd>−</kbd> and <kbd>Ctrl</kbd>+<kbd>0</kbd>.
+  Zoom does not change what is printed.</p>
+</section>
+
+<section id="lienzo">
+<h2>The canvas</h2>
+<ul>
+  <li>The <strong>width</strong> is the printer head width (the T02 prints 384 dots = 48 mm) and cannot be changed:
+    switching printers crops or adds white on the right, it never scales.</li>
+  <li>The <strong>length</strong> is changed by dragging the <strong>blue line</strong> at the end of the canvas,
+    by its handle or by the line itself. It snaps to whole millimetres; with <kbd>Shift</kbd>, dot by dot.</li>
+  <li>While dragging, what would be added shows as faint paper and what would be cut off, in red.</li>
+  <li>Next to the handle there is a box with the length in dots and its size in mm: you can type it too.</li>
+  <li>Below the canvas there is one screen of <strong>grey margin</strong> (not paper) so you can always drag the
+    line down.</li>
+  <li>The <strong>dashed orange line</strong> marks how far would be printed: the last row with something drawn.</li>
+</ul>
+<div class="tip">If you shorten the canvas and part of the drawing is lost, nothing is asked: a yellow warning shows
+  at the bottom and <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes it.</div>
+</section>
+
+<section id="pincel">
+<h2><span class="i on">&#xE70F;</span> Brush</h2>
+<ul>
+  <li>Left button: the chosen colour (<span class="swatch black"></span> or <span class="swatch white"></span>).
+    Right button: the other one, to erase without switching colours.</li>
+  <li>The blue circle under the mouse shows the brush size.</li>
+  <li>What you paint forms a single object, a drawing, which keeps growing while you stay on the brush. It is closed by
+    changing tools or with <kbd>Esc</kbd>; the next stroke starts another one. <kbd>Enter</kbd> fixes it to the paper.</li>
+  <li>A drawing can only be moved, with the <span class="i">&#xE8B0;</span> cursor: it cannot be scaled or rotated.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes the last stroke.</li>
+  <li>The brush never moves objects: it paints on top of them.</li>
+</ul>
+</section>
+
+<section id="imagenes">
+<h2><span class="i">&#xEB9F;</span> Images</h2>
+<h3>Adding</h3>
+<ul>
+  <li><span class="i">&#xEB9F;</span> or <kbd>Ctrl</kbd>+<kbd>I</kbd> to open a file, or drop the file on the window.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>V</kbd> pastes from the clipboard. Images copied from a web browser (“Copy image”) keep
+    their transparency.</li>
+  <li>They are placed at the top of the visible area and, if wider than the paper, shrunk to its width. Adding an
+    image switches to the <span class="i">&#xE8B0;</span> cursor so you can place it.</li>
+</ul>
+<h3>Moving, scaling and rotating</h3>
+<table>
+  <tr><th>Action</th><th>How</th></tr>
+  <tr><td>Move</td><td>Drag from inside the image.</td></tr>
+  <tr><td>Scale</td><td>Corners keep the proportions (<kbd>Shift</kbd>: free). Sides: one axis only.</td></tr>
+  <tr><td>Rotate</td><td>The circle on top (<kbd>Shift</kbd>: 15 degree steps).</td></tr>
+  <tr><td>Fix</td><td><kbd>Enter</kbd> or <span class="i">&#xE73E;</span>. “Edit → Fix all” fixes every image at once.</td></tr>
+  <tr><td>Delete</td><td><kbd>Del</kbd> or <span class="i">&#xE74D;</span>.</td></tr>
+  <tr><td>Deselect</td><td><kbd>Esc</kbd> or click outside the image.</td></tr>
+</table>
+<p>Scaling or rotating many times does not degrade the image: the original is kept and converted again each time.</p>
+<p>Whatever sticks out of the paper is shown faded and <strong>is not printed</strong>; a yellow warning reminds you.
+  This lets you move an image half out and bring it back later.</p>
+</section>
+
+<section id="texto">
+<h2><span class="i">&#xE8D2;</span> Text</h2>
+<ol>
+  <li>Choose the <span class="i">&#xE8D2;</span> tool (<kbd>Ctrl</kbd>+<kbd>T</kbd>) and click where the text should start.</li>
+  <li>Type in the <a href="#propiedades">Properties</a> box: the sample text is already selected and <kbd>Enter</kbd> adds a line.</li>
+  <li>Click elsewhere to finish. The next click places another text.</li>
+  <li>To change its box, drag the handles while the text is selected.</li>
+</ol>
+<table>
+  <tr><th>Option</th><th>What it does</th></tr>
+  <tr><td>Font</td><td>Any font installed in Windows.</td></tr>
+  <tr><td>Size</td><td>In typographic points: 12 pt measure the same on paper on any printer.</td></tr>
+  <tr><td><span class="i">&#xE8DD;</span> <span class="i">&#xE8DB;</span> <span class="i">&#xE8DC;</span></td><td>Bold, italic and underline.</td></tr>
+  <tr><td><span class="i">&#xE8E4;</span> <span class="i">&#xE8E3;</span> <span class="i">&#xE8E2;</span></td><td>Alignment of the lines inside the box.</td></tr>
+  <tr><td><span class="swatch black"></span> <span class="swatch white"></span></td><td>Colour of the selected text; white text shows on black areas.</td></tr>
+</table>
+<p>The text sits inside a box. Lines break at its width and the alignments refer to it. When placed, the box reaches the
+  edge of the paper. The handles change the box, with no fixed proportions and without touching the font size, and it can
+  never be shorter than the text.</p>
+<p>It is moved, rotated and fixed like an <a href="#imagenes">image</a>. It stays editable until you fix it; click it to
+  change it again. A text left empty disappears. <kbd>Esc</kbd> goes back from the editing box to the canvas.</p>
+</section>
+
+<section id="blanco-negro">
+<h2>Black and white</h2>
+<p>The printer only burns black dots. Colour and grey images are converted like this (in
+  <a href="#propiedades">Properties</a>, with the image selected):</p>
+<ul>
+  <li><strong>Dither</strong> (default): spreads black dots to simulate greys. Best for photos.</li>
+  <li><strong>Threshold</strong>: dark becomes black, light becomes white. Best for logos and line art.</li>
+</ul>
+<p><strong>Transparency</strong> is dithered too: a transparency gradient becomes dots further and further apart that
+  let what is underneath show through. With Threshold, anything under 50% opacity is transparent.</p>
+</section>
+
+<section id="imprimir">
+<h2><span class="i print">&#xE749;</span> Printing</h2>
+<ul>
+  <li>The <strong>full width</strong> is printed and, lengthwise, from the top down to the last line with something
+    drawn (the orange line). Blank space left at the top is kept.</li>
+  <li>Before sending, the printer is checked for <strong>paper and a closed cover</strong>: if not, you are warned and
+    nothing is sent (the printer would accept the job and say nothing).</li>
+  <li>While printing, the button becomes <span class="i">&#xE711;</span> Cancel and a progress bar shows at the bottom.</li>
+  <li>When done, the status bar tells how many lines were printed and what the printer answered. “Not confirmed”
+    means the printer did not report the end (it sometimes doesn't); it usually prints anyway.</li>
+</ul>
+</section>
+
+<section id="avisos">
+<h2>Warnings</h2>
+<p>PhomemoPaint does not interrupt you with dialogs about cropping. Warnings show in <strong>yellow on the status
+  bar</strong>:</p>
+<ul>
+  <li>The drawing was cut when shortening the canvas or switching to a narrower printer
+    (<kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes it).</li>
+  <li>An image sticks out of the paper: that part will not be printed.</li>
+  <li>The chosen model needs compression and cannot print yet.</li>
+</ul>
+</section>
+
+<section id="archivos">
+<h2>Files</h2>
+<table>
+  <tr><th>File menu</th><th></th></tr>
+  <tr><td>New <kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Clears the canvas (asks first).</td></tr>
+  <tr><td>Open PNG as canvas <kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Replaces the drawing with the image; the length becomes the image height and, if it is wider, the right side is cut off.</td></tr>
+  <tr><td>Insert image <kbd>Ctrl</kbd>+<kbd>I</kbd></td><td>Adds an image you can move, scale and rotate.</td></tr>
+  <tr><td>Export PNG <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Saves exactly what would be printed, as a 1-bit PNG.</td></tr>
+</table>
+</section>
+
+<section id="calibracion">
+<h2>Calibration pattern</h2>
+<p>“Printer → Calibration pattern” replaces the drawing with a frame with marks every millimetre and a cross in the
+  middle. Print it and measure it with a ruler: on the T02 the frame is 48 mm wide and, with the default length
+  (400 dots), 50 mm tall.</p>
+</section>
+
+<section id="diagnostico">
+<h2>Signal diagnostics</h2>
+<p>“Printer → Signal diagnostics” sends single commands to the printer and shows the answer in hex, as text and
+  explained. It is a tool for the curious and for trying new models.</p>
+<ul>
+  <li>One command per line, in hex (<code>1F 11 08</code>). Anything after <code>#</code> is a comment.</li>
+  <li>It comes with the known queries: battery, firmware, serial number, auto power-off, paper, chip and capabilities.</li>
+</ul>
+<div class="warn">Use it only with queries: an unknown command may change the printer settings. <code>1F 11 14</code>,
+  which starts a firmware update, is blocked.</div>
+</section>
+
+<section id="trucos">
+<h2>Tips and shortcuts</h2>
+<table>
+  <tr><th>Keys</th><th>What it does</th></tr>
+  <tr><td><kbd>F1</kbd></td><td>Help for the area under the mouse.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>Print.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Undo / redo (cropping and length changes too).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>Paste an image (with its transparency if it comes from a browser).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>I</kbd></td><td>Insert an image from a file.</td></tr>
+  <tr><td><kbd>V</kbd> / <kbd>B</kbd> / <kbd>T</kbd> or <kbd>Ctrl</kbd>+<kbd>T</kbd></td><td>Cursor / brush / text (the letters, with the canvas active).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>O</kbd> / <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>New / open PNG as canvas / export PNG.</td></tr>
+  <tr><td><kbd>Enter</kbd> / <kbd>Del</kbd> / <kbd>Esc</kbd></td><td>Fix / delete / deselect the object. <kbd>Esc</kbd> also closes the brush drawing.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+wheel, <kbd>Ctrl</kbd>+<kbd>+</kbd> / <kbd>−</kbd> / <kbd>0</kbd></td><td>Zoom; <kbd>Ctrl</kbd>+<kbd>0</kbd> fits the width.</td></tr>
+  <tr><td>Right button</td><td>Paints with the other colour.</td></tr>
+  <tr><td><kbd>Shift</kbd> + corner</td><td>Scale the image without keeping proportions.</td></tr>
+  <tr><td><kbd>Shift</kbd> + rotate</td><td>Rotate in 15 degree steps.</td></tr>
+  <tr><td><kbd>Shift</kbd> + blue line</td><td>Change the length dot by dot instead of by millimetres.</td></tr>
+</table>
+<div class="tip">Drag an image file from Explorer onto the window to insert it.</div>
+</section>
+
+<section id="problemas">
+<h2>Troubleshooting</h2>
+<h3>The paper comes out blank</h3>
+<p>If the printer is connected over <strong>USB</strong>, switch to Bluetooth: the T02 does not print over USB. If it
+  already is Bluetooth, check the roll (thermal paper only marks on one side).</p>
+<h3>The printer does not show up</h3>
+<ul>
+  <li>Check it is on and press <span class="i">&#xE72C;</span> to search again.</li>
+  <li>If it is connected to another device (your phone, for example) it does not advertise itself: disconnect it there.</li>
+  <li>After using it, Windows keeps the connection for a while and the printer stops advertising; if it was already
+    in the list, it can still be used.</li>
+</ul>
+<h3>“Out of paper” or “cover is open”</h3>
+<p>Load a roll or close the cover and print again. With the cover open the printer also reports no paper.</p>
+<h3>“Sent, not confirmed”</h3>
+<p>The printer did not report the end. It usually prints anyway; if nothing came out, check the paper and the connection.</p>
+<h3>Wrong model</h3>
+<p>Pick it by hand in the model list. It will be remembered for that printer.</p>
+</section>
+
+<section id="acerca">
+<h2>About</h2>
+<p><strong>PhomemoPaint</strong>, by XWolfOverride. MIT licence.</p>
+<p>The printer protocol comes from the open projects
+  <a href="https://github.com/vivier/phomemo-tools">phomemo-tools</a> and
+  <a href="https://github.com/mitchelloharawild/phomemo-protocol">phomemo-protocol</a>, completed with testing.</p>
+<p class="muted">The language follows Windows; to force it, set the environment variable
+  <code>PHOMEMOPAINT_LANG=es</code> or <code>en</code>. Settings are stored in
+  <code>%APPDATA%\PhomemoPaint\settings.json</code>.</p>
+</section>
+
+</main>
+</body>
+</html>

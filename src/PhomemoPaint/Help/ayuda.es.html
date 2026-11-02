@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayuda de PhomemoPaint</title>
+<link rel="icon" href="Phome.ico">
+<link rel="stylesheet" href="ayuda.css">
+</head>
+<body>
+
+<nav>
+  <div class="brand"><img src="Phome.ico" alt="">PhomemoPaint</div>
+  <ol>
+    <li><a href="#inicio">Primeros pasos</a></li>
+    <li class="group">La ventana</li>
+    <li><a href="#ventana">Partes de la ventana</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#propiedades">Propiedades</a></li>
+    <li><a href="#impresora">Impresora</a></li>
+    <li><a href="#zoom">Zoom</a></li>
+    <li class="group">Dibujar</li>
+    <li><a href="#lienzo">El lienzo</a></li>
+    <li><a href="#pincel">Pincel</a></li>
+    <li><a href="#imagenes">Imágenes</a></li>
+    <li><a href="#texto">Texto</a></li>
+    <li><a href="#blanco-negro">Blanco y negro</a></li>
+    <li class="group">Imprimir y guardar</li>
+    <li><a href="#imprimir">Imprimir</a></li>
+    <li><a href="#avisos">Avisos</a></li>
+    <li><a href="#archivos">Archivos</a></li>
+    <li><a href="#calibracion">Patrón de calibración</a></li>
+    <li><a href="#diagnostico">Diagnóstico de señales</a></li>
+    <li class="group">Referencia</li>
+    <li><a href="#trucos">Trucos y atajos</a></li>
+    <li><a href="#problemas">Si algo no funciona</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<h1>Ayuda de PhomemoPaint</h1>
+<p class="subtitle">Dibuja en blanco y negro e imprime en impresoras térmicas Phomemo, sin drivers.</p>
+
+<section id="inicio">
+<h2>Primeros pasos</h2>
+<ol class="steps">
+  <li><strong>Enciende la impresora.</strong> No hace falta emparejarla en Windows: PhomemoPaint la busca
+    por Bluetooth al abrirse y la selecciona sola. Aparecerá en el panel <a href="#impresora">Impresora</a>
+    como «T02 — Bluetooth …».</li>
+  <li><strong>Dibuja.</strong> Pinta con el pincel <span class="i on">&#xE70F;</span>, pega una imagen con
+    <kbd>Ctrl</kbd>+<kbd>V</kbd> o arrastra un fichero de imagen a la ventana.</li>
+  <li><strong>Ajusta el largo</strong> del papel arrastrando la línea azul del final del lienzo.</li>
+  <li><strong>Imprime</strong> con <span class="i print">&#xE749;</span> o <kbd>Ctrl</kbd>+<kbd>P</kbd>.
+    Solo se imprime hasta la última línea con algo dibujado, para no gastar papel.</li>
+</ol>
+<div class="tip">Pulsa <kbd>F1</kbd> con el ratón encima de cualquier zona de la ventana (lienzo, herramientas,
+  impresora…) y esta ayuda se abre directamente en su sección.</div>
+</section>
+
+<section id="ventana">
+<h2>Partes de la ventana</h2>
+<figure class="schema">
+<svg viewBox="0 0 860 700" role="group" aria-label="Esquema de la ventana de PhomemoPaint, con el lienzo a la izquierda y la columna de herramientas a la derecha" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="tramado" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path fill="#000" d="M0 0h2v2H0zM2 2h2v2H2z"/>
+    </pattern>
+  </defs>
+
+  <!-- Ventana -->
+  <rect class="s-window" width="860" height="700"/>
+  <rect class="s-title" width="860" height="30"/>
+  <image href="Phome.ico" x="8" y="6" width="18" height="18"/>
+  <text x="32" y="20">PhomemoPaint</text>
+  <text class="s-icon" x="768" y="20">&#xE921;</text>
+  <text class="s-icon" x="800" y="20">&#xE922;</text>
+  <text class="s-icon" x="832" y="20">&#xE8BB;</text>
+
+  <!-- Menú -->
+  <text x="12" y="48">Archivo</text>
+  <text x="74" y="48">Editar</text>
+  <text x="130" y="48">Ver</text>
+  <text x="170" y="48">Impresora</text>
+  <text x="254" y="48">Ayuda</text>
+
+  <!-- Lienzo -->
+  <rect class="s-margin" x="26" y="76" width="542" height="598"/>
+  <rect class="s-track" x="568" y="56" width="12" height="618"/>
+  <rect class="s-thumb" x="571" y="60" width="6" height="280" rx="3"/>
+  <rect class="s-ruler" y="56" width="568" height="20"/>
+  <rect class="s-ruler" y="56" width="26" height="618"/>
+  <path class="s-tick" d="M26 66v10M66 70v6M106 66v10M146 70v6M186 66v10M226 70v6M266 66v10M306 70v6M346 66v10M386 70v6M410 56v20M0 76h26M16 116h10M6 156h20M16 196h10M6 236h20M16 276h10M6 316h20M16 356h10M6 396h20M16 436h10M6 476h20M16 516h10M6 556h20M16 596h10M6 636h20"/>
+  <text class="s-small" x="4" y="70">mm</text>
+  <text class="s-small" x="29" y="66">0</text>
+  <text class="s-small" x="109" y="66">10</text>
+  <text class="s-small" x="189" y="66">20</text>
+  <text class="s-small" x="269" y="66">30</text>
+  <text class="s-small" x="349" y="66">40</text>
+  <text class="s-small" x="6" y="88">0</text>
+  <text class="s-small" x="6" y="168">10</text>
+  <text class="s-small" x="6" y="248">20</text>
+  <text class="s-small" x="6" y="328">30</text>
+  <text class="s-small" x="6" y="408">40</text>
+  <text class="s-small" x="6" y="488">50</text>
+  <rect class="s-paper" x="26" y="76" width="384" height="400"/>
+
+  <!-- Contenido de ejemplo: imagen tramada, texto y trazos a pincel -->
+  <circle cx="200" cy="158" r="18" fill="url(#tramado)"/>
+  <path fill="#000" d="M74 256 138 150l36 58 22-30 50 78z"/>
+  <text class="s-sample" x="70" y="330">¡Hola!</text>
+  <path class="s-ink" d="M72 372c30-26 46-28 62-6s34 22 54 0 40-20 58 0 42 18 70-8"/>
+
+  <!-- Objeto seleccionado, con sus tiradores -->
+  <path class="s-sel" d="M158 120V100M70 120h180v140H70z"/>
+  <circle class="s-grip" cx="158" cy="95" r="5"/>
+  <path class="s-grip" d="M66.5 116.500h7v7h-7zM154.5 116.500h7v7h-7zM246.5 116.500h7v7h-7zM66.5 186.500h7v7h-7zM246.5 186.500h7v7h-7zM66.5 256.500h7v7h-7zM154.5 256.500h7v7h-7zM246.5 256.500h7v7h-7z"/>
+
+  <!-- Hasta dónde se imprime y final del papel -->
+  <path class="s-extent" d="M26 400H418"/>
+  <path class="s-length" d="M26 476H418"/>
+  <rect class="s-handle" x="198" y="471" width="40" height="10" rx="2"/>
+  <rect class="s-field" x="246" y="484" width="66" height="24"/>
+  <text x="252" y="501">400</text>
+  <text class="s-icon s-tiny" x="298" y="500">&#xE70D;</text>
+  <text class="s-onmargin" x="318" y="501">pt · 50,0 mm</text>
+
+  <!-- Herramientas -->
+  <rect class="s-swatch-on" x="582" y="101" width="36" height="36"/>
+  <rect class="s-swatch" x="584" y="103" width="32" height="32" fill="#000"/>
+  <rect class="s-swatch" x="620" y="103" width="32" height="32" fill="#fff"/>
+  <rect class="s-field" x="622" y="69" width="46" height="27"/>
+  <text x="628" y="88">12</text>
+  <text class="s-icon s-tiny" x="654" y="87">&#xE70D;</text>
+
+  <!-- Propiedades -->
+  <rect class="s-section" x="584.5" y="143.5" width="271" height="92"/>
+  <text class="s-head" x="594" y="165">Propiedades</text>
+  <text x="594" y="187">Paso a blanco y negro:</text>
+  <rect class="s-field" x="594" y="196" width="130" height="28"/>
+  <text x="600" y="215">Tramado</text>
+  <text class="s-icon s-tiny" x="708" y="214">&#xE70D;</text>
+
+  <!-- Impresora -->
+  <rect class="s-section" x="584.5" y="241.5" width="271" height="368"/>
+  <text class="s-head" x="594" y="263">Impresora</text>
+  <rect class="s-field" x="594" y="274" width="210" height="28"/>
+  <text x="600" y="293">T02 — Bluetooth</text>
+  <text class="s-icon s-tiny" x="788" y="292">&#xE70D;</text>
+  <rect class="s-button" x="808" y="270" width="36" height="36"/>
+  <text class="s-icon s-big" x="826" y="295">&#xE72C;</text>
+  <rect class="s-field" x="594" y="310" width="250" height="28"/>
+  <text x="600" y="329">Phomemo T02</text>
+  <text class="s-icon s-tiny" x="828" y="328">&#xE70D;</text>
+  <g class="s-caption">
+    <text x="594" y="364">Conexión</text>
+    <text x="594" y="388">Dirección</text>
+    <text x="594" y="412">N.º de serie</text>
+    <text x="594" y="436">Firmware</text>
+    <text x="594" y="460">Batería</text>
+    <text x="594" y="484">Papel</text>
+    <text x="594" y="508">Tapa</text>
+    <text x="594" y="532">Leído</text>
+  </g>
+  <text x="688" y="364">Bluetooth LE</text>
+  <text x="688" y="388">—</text>
+  <text x="688" y="412">—</text>
+  <text x="688" y="436">—</text>
+  <text x="688" y="460">—</text>
+  <text x="688" y="484">—</text>
+  <text x="688" y="508">—</text>
+  <text x="688" y="532">—</text>
+  <rect class="s-button" x="770" y="550" width="36" height="26"/>
+  <text class="s-icon" x="788" y="568">&#xE72C;</text>
+
+  <!-- Zoom -->
+  <rect class="s-button" x="671" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="689" y="661">&#xE71F;</text>
+  <rect class="s-field" x="711" y="641" width="60" height="27"/>
+  <text x="717" y="660">×1</text>
+  <text class="s-icon s-tiny" x="756" y="659">&#xE70D;</text>
+  <rect class="s-button" x="775" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="793" y="661">&#xE8A3;</text>
+  <rect class="s-button" x="815" y="640" width="36" height="29"/>
+  <text class="s-icon s-big" x="833" y="661">&#xE9A6;</text>
+
+  <!-- Barra de estado -->
+  <rect class="s-title" y="674" width="860" height="26"/>
+  <text class="s-status" x="12" y="692">160, 200  (20,0, 25,0 mm)</text>
+  <text class="s-status" x="190" y="692">Se imprimen 324 líneas (40,5 mm)</text>
+  <rect class="s-warn" x="420" y="677" width="250" height="20"/>
+  <text class="s-icon s-tiny" x="434" y="691">&#xE7BA;</text>
+  <text class="s-status" x="446" y="692">Los avisos salen aquí, en amarillo</text>
+
+  <!-- Zonas enlazadas; los botones de herramientas van encima de la suya -->
+  <a href="#archivos"><title>Menús</title><rect class="s-zone" y="30" width="860" height="26"/><circle class="s-num" cx="350" cy="43" r="11"/><text class="s-n" x="350" y="47.5">1</text></a>
+  <a href="#lienzo"><title>Margen gris</title><path class="s-zone" d="M26 476h542v198H26zM410 76h158v400H410z"/><circle class="s-num" cx="218" cy="590" r="11"/><text class="s-n" x="218" y="594.5">7</text></a>
+  <a href="#lienzo"><title>Reglas</title><path class="s-zone" d="M0 56h568v20H26v598H0z"/><circle class="s-num" cx="13" cy="130" r="11"/><text class="s-n" x="13" y="134.5">2</text></a>
+  <a href="#lienzo"><title>Papel</title><rect class="s-zone" x="26" y="76" width="384" height="400"/><circle class="s-num" cx="384" cy="102" r="11"/><text class="s-n" x="384" y="106.5">3</text></a>
+  <a href="#imagenes"><title>Objeto seleccionado</title><rect class="s-zone" x="62" y="88" width="196" height="180"/><circle class="s-num" cx="278" cy="134" r="11"/><text class="s-n" x="278" y="138.5">4</text></a>
+  <a href="#lienzo"><title>Línea naranja</title><rect class="s-zone" x="26" y="392" width="426" height="16"/><circle class="s-num" cx="436" cy="400" r="11"/><text class="s-n" x="436" y="404.5">5</text></a>
+  <a href="#lienzo"><title>Línea azul</title><path class="s-zone" d="M26 468h426v42H26z"/><circle class="s-num" cx="436" cy="476" r="11"/><text class="s-n" x="436" y="480.5">6</text></a>
+
+  <a href="#herramientas"><title>Herramientas</title><rect class="s-zone" x="580" y="56" width="280" height="84"/><circle class="s-num" cx="678" cy="119" r="11"/><text class="s-n" x="678" y="123.5">8</text></a>
+  <a href="#pincel"><title>Pincel</title><rect class="s-button" x="584" y="60" width="36" height="36"/><text class="s-icon s-big" x="602" y="84">&#xE70F;</text></a>
+  <a href="#imagenes"><title>Insertar imagen</title><rect class="s-button" x="678" y="60" width="36" height="36"/><text class="s-icon s-big" x="696" y="84">&#xEB9F;</text></a>
+  <a href="#imagenes"><title>Pegar</title><rect class="s-button" x="718" y="60" width="36" height="36"/><text class="s-icon s-big" x="736" y="84">&#xE77F;</text></a>
+  <a href="#texto"><title>Texto</title><rect class="s-button" x="758" y="60" width="36" height="36"/><text class="s-icon s-big" x="776" y="84">&#xE8D2;</text></a>
+  <a href="#imprimir"><title>Imprimir</title><rect class="s-button s-print" x="811" y="60" width="42" height="76"/><text class="s-icon s-huge" x="832" y="107">&#xE749;</text></a>
+  <a href="#herramientas"><title>Cursor</title><rect class="s-button s-on" x="703" y="103" width="32" height="32"/><text class="s-icon" x="719" y="125">&#xE8B0;</text></a>
+  <a href="#herramientas"><title>Fijar</title><rect class="s-button" x="739" y="103" width="32" height="32"/><text class="s-icon" x="755" y="125">&#xE73E;</text></a>
+  <a href="#herramientas"><title>Eliminar</title><rect class="s-button" x="775" y="103" width="32" height="32"/><text class="s-icon" x="791" y="125">&#xE74D;</text></a>
+
+  <a href="#propiedades"><title>Propiedades</title><rect class="s-zone" x="584" y="143" width="272" height="93"/><circle class="s-num" cx="836" cy="165" r="11"/><text class="s-n" x="836" y="169.5">9</text></a>
+  <a href="#impresora"><title>Impresora</title><rect class="s-zone" x="584" y="241" width="272" height="369"/><circle class="s-num" cx="834" cy="258" r="11"/><text class="s-n" x="834" y="262.5">10</text></a>
+  <a href="#zoom"><title>Zoom</title><rect class="s-zone" x="584" y="634" width="272" height="40"/><circle class="s-num" cx="640" cy="654" r="11"/><text class="s-n" x="640" y="658.5">11</text></a>
+  <a href="#avisos"><title>Barra de estado</title><rect class="s-zone" y="674" width="860" height="26"/><circle class="s-num" cx="836" cy="687" r="11"/><text class="s-n" x="836" y="691.5">12</text></a>
+</svg>
+<figcaption>Esquema de la ventana. Haz clic en una zona o en un botón para ir a su sección.</figcaption>
+</figure>
+<ol class="callouts">
+  <li><strong>Menús</strong>: <a href="#archivos">Archivo</a>, Editar, Ver, <a href="#impresora">Impresora</a> y Ayuda.</li>
+  <li><strong>Reglas</strong> en milímetros, arriba y a la izquierda.</li>
+  <li><strong>Papel</strong>: <a href="#lienzo">el lienzo</a>, con lo que has dibujado.</li>
+  <li><strong>Objeto seleccionado</strong>, con sus tiradores: una <a href="#imagenes">imagen</a> o un <a href="#texto">texto</a>. Un <a href="#pincel">dibujo</a> solo se mueve y no tiene tiradores.</li>
+  <li><strong>Línea naranja</strong>: hasta dónde se imprimiría.</li>
+  <li><strong>Línea azul</strong>: el final del papel. Arrástrala para cambiar el largo, o escríbelo en el campo que tiene al lado.</li>
+  <li><strong>Margen gris</strong>: no es papel y no se imprime.</li>
+  <li><a href="#herramientas"><strong>Herramientas</strong></a>: pincel, imágenes, texto, cursor, colores e imprimir.</li>
+  <li><a href="#propiedades"><strong>Propiedades</strong></a> de lo seleccionado.</li>
+  <li><a href="#impresora"><strong>Impresora</strong></a>: cuál se usa, el modelo y sus datos.</li>
+  <li><a href="#zoom"><strong>Zoom</strong></a>.</li>
+  <li><strong>Barra de estado</strong>: posición del ratón en puntos y milímetros, cuánto se imprimiría, <a href="#avisos">avisos</a> en amarillo y mensajes de la impresora.</li>
+</ol>
+</section>
+
+<section id="herramientas">
+<h2><span class="i">&#xE70F;</span> Herramientas</h2>
+<table>
+  <tr><th>Botón</th><th>Qué hace</th></tr>
+  <tr><td><span class="i on">&#xE70F;</span> Pincel</td><td>Dibuja a mano; pinta siempre, también encima de los objetos. Es la herramienta con la que empieza la aplicación. <kbd>B</kbd></td></tr>
+  <tr><td><span class="i">&#xEB9F;</span> Insertar imagen</td><td>Abre un fichero de imagen (PNG, JPG, BMP, GIF). <kbd>Ctrl</kbd>+<kbd>I</kbd></td></tr>
+  <tr><td><span class="i">&#xE77F;</span> Pegar</td><td>Pega la imagen del portapapeles. <kbd>Ctrl</kbd>+<kbd>V</kbd></td></tr>
+  <tr><td><span class="i">&#xE8D2;</span> Texto</td><td>Coloca textos: elige la herramienta y haz clic en el lienzo. <kbd>Ctrl</kbd>+<kbd>T</kbd></td></tr>
+  <tr><td><span class="i">&#xE8B0;</span> Cursor</td><td>Selecciona, mueve y ajusta imágenes, textos y dibujos sin pintar nada. <kbd>V</kbd></td></tr>
+  <tr><td><span class="i">&#xE73E;</span> Fijar</td><td>Funde el objeto seleccionado con el papel; ya no se podrá mover. <kbd>Intro</kbd></td></tr>
+  <tr><td><span class="i">&#xE74D;</span> Eliminar</td><td>Quita el objeto seleccionado. <kbd>Supr</kbd></td></tr>
+  <tr><td><span class="i print">&#xE749;</span> Imprimir</td><td>Manda el dibujo a la impresora. Mientras imprime se convierte en
+    <span class="i">&#xE711;</span> Cancelar. <kbd>Ctrl</kbd>+<kbd>P</kbd></td></tr>
+  <tr><td><span class="swatch black"></span> <span class="swatch white"></span> Colores</td><td>Color del botón izquierdo del ratón. El derecho pinta siempre con el otro.</td></tr>
+  <tr><td>Pincel</td><td>Grosor del pincel, de 1 a 64 puntos.</td></tr>
+</table>
+<p>Fijar y Eliminar actúan sobre el objeto seleccionado o, con el pincel, sobre el dibujo que estás haciendo.</p>
+</section>
+
+<section id="propiedades">
+<h2>Propiedades</h2>
+<p>Muestra las opciones de lo que esté seleccionado. Con una imagen seleccionada puedes elegir cómo se pasa a
+  blanco y negro (<a href="#blanco-negro">Tramado o Umbral</a>). Con un texto, su contenido y su formato (<a href="#texto">Texto</a>). Sin selección, el panel lo indica.</p>
+</section>
+
+<section id="impresora">
+<h2><span class="i">&#xE749;</span> Impresora</h2>
+<h3>Elegir la impresora</h3>
+<ul>
+  <li>La primera lista tiene las impresoras <strong>Bluetooth</strong> encontradas y los <strong>puertos COM</strong>.
+    Al abrir la ventana se buscan impresoras Bluetooth durante unos segundos; <span class="i">&#xE72C;</span>
+    vuelve a buscar. Las que ya se han visto se recuerdan.</li>
+  <li>No hace falta emparejar la impresora en Windows (es Bluetooth LE y Windows no la muestra en su buscador).</li>
+  <li>La segunda lista es el <strong>modelo</strong>. Normalmente se elige solo (por el nombre Bluetooth, el
+    identificador USB o el número de serie), pero puedes cambiarlo.</li>
+  <li>En los modelos de etiquetas (familia M110) aparece además el <strong>ancho de la etiqueta</strong> en mm.</li>
+</ul>
+<div class="warn">La <strong>T02 solo imprime por Bluetooth</strong>. Por USB contesta a las consultas pero el
+  papel sale en blanco. Si ves la misma impresora por USB y por Bluetooth, PhomemoPaint elige Bluetooth.</div>
+<h3>Datos de la impresora</h3>
+<p>Al seleccionarla se le pregunta su número de serie, firmware, batería, papel y tapa. La batería se vuelve a
+  leer cada 5 minutos; el botón de actualizar de ese panel lo pide en el momento. Las búsquedas no mandan nada a ningún
+  aparato: solo se pregunta a la impresora que eliges.</p>
+<h3>Modelos que no imprimen todavía</h3>
+<p>Algunos modelos de papel A4 aparecen como «requiere compresión, no imprime»: puedes elegirlos para dibujar con
+  su ancho, pero el botón Imprimir queda desactivado.</p>
+</section>
+
+<section id="zoom">
+<h2><span class="i">&#xE8A3;</span> Zoom</h2>
+<p><span class="i">&#xE71F;</span> aleja, <span class="i">&#xE8A3;</span> acerca (de ×1 a ×8) y
+  <span class="i">&#xE9A6;</span> ajusta el lienzo al ancho de la ventana. También con <kbd>Ctrl</kbd>+rueda del
+  ratón, <kbd>Ctrl</kbd>+<kbd>+</kbd>, <kbd>Ctrl</kbd>+<kbd>−</kbd> y <kbd>Ctrl</kbd>+<kbd>0</kbd>.
+  El zoom no cambia lo que se imprime.</p>
+</section>
+
+<section id="lienzo">
+<h2>El lienzo</h2>
+<ul>
+  <li>El <strong>ancho</strong> es el del cabezal de la impresora (la T02 imprime 384 puntos = 48 mm) y no se
+    puede cambiar: al cambiar de impresora se recorta o se añade blanco a la derecha, nunca se escala.</li>
+  <li>El <strong>largo</strong> se cambia arrastrando la <strong>línea azul</strong> del final del lienzo, por su
+    asa o por la línea. Se ajusta a milímetros enteros; con <kbd>Mayús</kbd>, punto a punto.</li>
+  <li>Mientras arrastras, lo que se añadiría se ve como papel a medias y lo que se recortaría, en rojo.</li>
+  <li>Junto al asa hay un campo con el largo en puntos y su equivalencia en mm: también puedes escribirlo.</li>
+  <li>Debajo del lienzo queda una pantalla de <strong>margen gris</strong> (no es papel) para que siempre puedas
+    arrastrar la línea hacia abajo.</li>
+  <li>La <strong>línea naranja discontinua</strong> marca hasta dónde se imprimiría: la última fila con algo
+    dibujado.</li>
+</ul>
+<div class="tip">Si acortas el lienzo y se pierde parte del dibujo, no se pregunta nada: aparece un aviso amarillo
+  abajo y <kbd>Ctrl</kbd>+<kbd>Z</kbd> lo deshace.</div>
+</section>
+
+<section id="pincel">
+<h2><span class="i on">&#xE70F;</span> Pincel</h2>
+<ul>
+  <li>Botón izquierdo: el color elegido (<span class="swatch black"></span> o <span class="swatch white"></span>).
+    Botón derecho: el contrario, para borrar sin cambiar de color.</li>
+  <li>El círculo azul bajo el ratón muestra el tamaño del pincel.</li>
+  <li>Lo que pintas forma un solo objeto, un dibujo, que sigue creciendo mientras sigas con el pincel. Se cierra al
+    cambiar de herramienta o con <kbd>Esc</kbd>; el siguiente trazo empieza otro. <kbd>Intro</kbd> lo fija al papel.</li>
+  <li>Un dibujo solo se puede mover, con el <span class="i">&#xE8B0;</span> cursor: no se escala ni se gira.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> deshace el último trazo.</li>
+  <li>El pincel nunca mueve objetos: pinta encima de ellos.</li>
+</ul>
+</section>
+
+<section id="imagenes">
+<h2><span class="i">&#xEB9F;</span> Imágenes</h2>
+<h3>Añadir</h3>
+<ul>
+  <li><span class="i">&#xEB9F;</span> o <kbd>Ctrl</kbd>+<kbd>I</kbd> para abrir un fichero, o arrastra el fichero
+    a la ventana.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>V</kbd> pega del portapapeles. Si copias una imagen desde el navegador («Copiar
+    imagen») se conserva su transparencia.</li>
+  <li>Se colocan arriba de la zona visible y, si son más anchas que el papel, se reducen a su ancho. Al añadir una
+    imagen se pasa al <span class="i">&#xE8B0;</span> cursor para poder colocarla.</li>
+</ul>
+<h3>Mover, escalar y girar</h3>
+<table>
+  <tr><th>Acción</th><th>Cómo</th></tr>
+  <tr><td>Mover</td><td>Arrastra desde dentro de la imagen.</td></tr>
+  <tr><td>Escalar</td><td>Esquinas: mantienen la proporción (<kbd>Mayús</kbd>: libre). Lados: un solo eje.</td></tr>
+  <tr><td>Girar</td><td>El círculo de arriba (<kbd>Mayús</kbd>: de 15 en 15 grados).</td></tr>
+  <tr><td>Fijar</td><td><kbd>Intro</kbd> o <span class="i">&#xE73E;</span>. «Editar → Fijar todas» fija todas a la vez.</td></tr>
+  <tr><td>Eliminar</td><td><kbd>Supr</kbd> o <span class="i">&#xE74D;</span>.</td></tr>
+  <tr><td>Deseleccionar</td><td><kbd>Esc</kbd> o clic fuera de la imagen.</td></tr>
+</table>
+<p>Escalar o girar varias veces no estropea la imagen: se guarda el original y se convierte de nuevo cada vez.</p>
+<p>Lo que sobresale del papel se ve atenuado y <strong>no se imprime</strong>; un aviso amarillo lo recuerda.
+  Así puedes sacar una imagen a medias y volver a colocarla.</p>
+</section>
+
+<section id="texto">
+<h2><span class="i">&#xE8D2;</span> Texto</h2>
+<ol>
+  <li>Elige la herramienta <span class="i">&#xE8D2;</span> (<kbd>Ctrl</kbd>+<kbd>T</kbd>) y haz clic donde quieras que empiece el texto.</li>
+  <li>Escribe en el cuadro de <a href="#propiedades">Propiedades</a>: el texto de ejemplo ya está seleccionado y <kbd>Intro</kbd> añade una línea.</li>
+  <li>Haz clic fuera para terminar. El siguiente clic coloca otro texto.</li>
+  <li>Para cambiar su cuadro, arrastra los tiradores con el texto seleccionado.</li>
+</ol>
+<table>
+  <tr><th>Opción</th><th>Qué hace</th></tr>
+  <tr><td>Fuente</td><td>Cualquiera de las instaladas en Windows.</td></tr>
+  <tr><td>Tamaño</td><td>En puntos tipográficos: 12 pt miden lo mismo en el papel en cualquier impresora.</td></tr>
+  <tr><td><span class="i">&#xE8DD;</span> <span class="i">&#xE8DB;</span> <span class="i">&#xE8DC;</span></td><td>Negrita, cursiva y subrayado.</td></tr>
+  <tr><td><span class="i">&#xE8E4;</span> <span class="i">&#xE8E3;</span> <span class="i">&#xE8E2;</span></td><td>Alineación de las líneas dentro del cuadro.</td></tr>
+  <tr><td><span class="swatch black"></span> <span class="swatch white"></span></td><td>Color del texto seleccionado; el texto blanco se ve sobre zonas negras.</td></tr>
+</table>
+<p>El texto va dentro de un cuadro. Las líneas se parten al llegar a su ancho y las alineaciones se refieren a él. Al
+  colocarlo, el cuadro llega hasta el borde del papel. Los tiradores cambian el cuadro, sin proporción fija y sin tocar
+  el tamaño de la fuente, y nunca puede ser más bajo que el texto.</p>
+<p>Se mueve, se gira y se fija como una <a href="#imagenes">imagen</a>. Sigue siendo editable hasta que lo fijes; haz clic
+  en él para volver a cambiarlo. Un texto que dejes vacío desaparece. Con <kbd>Esc</kbd> vuelves del cuadro de edición al
+  lienzo.</p>
+</section>
+
+<section id="blanco-negro">
+<h2>Blanco y negro</h2>
+<p>La impresora solo quema puntos negros. Las imágenes en color o en gris se convierten así (en
+  <a href="#propiedades">Propiedades</a>, con la imagen seleccionada):</p>
+<ul>
+  <li><strong>Tramado</strong> (por defecto): reparte puntos negros para simular los grises. Es lo mejor para fotos.</li>
+  <li><strong>Umbral</strong>: lo oscuro, negro; lo claro, blanco. Mejor para logotipos y dibujos de línea.</li>
+</ul>
+<p>La <strong>transparencia</strong> también se trama: un degradado de transparencia se convierte en puntos cada vez
+  más separados que dejan ver lo de debajo. Con Umbral, lo que tenga menos del 50 % de opacidad es transparente.</p>
+</section>
+
+<section id="imprimir">
+<h2><span class="i print">&#xE749;</span> Imprimir</h2>
+<ul>
+  <li>Se imprime <strong>todo el ancho</strong> y, a lo largo, desde arriba hasta la última línea con algo
+    dibujado (la línea naranja). Si dejas espacio en blanco arriba, se respeta.</li>
+  <li>Antes de enviar se comprueba que la impresora <strong>tiene papel y la tapa cerrada</strong>: si no, avisa y
+    no envía nada (la impresora aceptaría el trabajo y no diría nada).</li>
+  <li>Mientras imprime, el botón pasa a <span class="i">&#xE711;</span> Cancelar y hay una barra de progreso abajo.</li>
+  <li>Al terminar, la barra de estado dice cuántas líneas se han impreso y lo que contestó la impresora. Si dice
+    «sin confirmación», la impresora no avisó del final (a veces no lo hace); normalmente se imprime igual.</li>
+</ul>
+</section>
+
+<section id="avisos">
+<h2>Avisos</h2>
+<p>PhomemoPaint no interrumpe con ventanas para avisar de recortes. Los avisos salen en <strong>amarillo en la barra
+  de estado</strong>:</p>
+<ul>
+  <li>Se ha recortado el dibujo al acortar el lienzo o al cambiar a una impresora más estrecha
+    (<kbd>Ctrl</kbd>+<kbd>Z</kbd> lo deshace).</li>
+  <li>Una imagen sobresale del papel: esa parte no se imprimirá.</li>
+  <li>El modelo elegido necesita compresión y todavía no se puede imprimir en él.</li>
+</ul>
+</section>
+
+<section id="archivos">
+<h2>Archivos</h2>
+<table>
+  <tr><th>Menú Archivo</th><th></th></tr>
+  <tr><td>Nuevo <kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Borra el lienzo (pide confirmación).</td></tr>
+  <tr><td>Abrir PNG como lienzo <kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Sustituye el dibujo por la imagen; el largo pasa a ser el de la imagen y, si es más ancha, se recorta la derecha.</td></tr>
+  <tr><td>Insertar imagen <kbd>Ctrl</kbd>+<kbd>I</kbd></td><td>Añade una imagen que puedes mover, escalar y girar.</td></tr>
+  <tr><td>Exportar PNG <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Guarda exactamente lo que se imprimiría, en PNG de 1 bit.</td></tr>
+</table>
+</section>
+
+<section id="calibracion">
+<h2>Patrón de calibración</h2>
+<p>«Impresora → Patrón de calibración» sustituye el dibujo por un marco con marcas cada milímetro y una cruz en
+  el centro. Imprímelo y mide con una regla: en la T02, el marco mide 48 mm de ancho y, con el largo por defecto
+  (400 puntos), 50 mm de alto.</p>
+</section>
+
+<section id="diagnostico">
+<h2>Diagnóstico de señales</h2>
+<p>«Impresora → Diagnóstico de señales» manda comandos sueltos a la impresora y muestra lo que contesta, en
+  hexadecimal, en texto y explicado. Es una herramienta para curiosos y para probar modelos nuevos.</p>
+<ul>
+  <li>Una línea por comando, en hexadecimal (<code>1F 11 08</code>). Lo que va tras <code>#</code> es comentario.</li>
+  <li>Viene con las consultas conocidas: batería, firmware, número de serie, apagado automático, papel, chip y
+    capacidades.</li>
+</ul>
+<div class="warn">Úsalo solo con consultas: un comando desconocido puede cambiar la configuración de la impresora.
+  <code>1F 11 14</code>, que inicia una actualización de firmware, está bloqueado.</div>
+</section>
+
+<section id="trucos">
+<h2>Trucos y atajos</h2>
+<table>
+  <tr><th>Teclas</th><th>Qué hace</th></tr>
+  <tr><td><kbd>F1</kbd></td><td>Ayuda de la zona que hay bajo el ratón.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>Imprimir.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Deshacer / rehacer (también recortes y cambios de largo).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>Pegar una imagen (con su transparencia si viene de un navegador).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>I</kbd></td><td>Insertar imagen desde un fichero.</td></tr>
+  <tr><td><kbd>V</kbd> / <kbd>B</kbd> / <kbd>T</kbd> o <kbd>Ctrl</kbd>+<kbd>T</kbd></td><td>Cursor / pincel / texto (las letras, con el lienzo activo).</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>O</kbd> / <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Nuevo / abrir PNG como lienzo / exportar PNG.</td></tr>
+  <tr><td><kbd>Intro</kbd> / <kbd>Supr</kbd> / <kbd>Esc</kbd></td><td>Fijar / eliminar / deseleccionar el objeto. <kbd>Esc</kbd> también cierra el dibujo a pincel.</td></tr>
+  <tr><td><kbd>Ctrl</kbd>+rueda, <kbd>Ctrl</kbd>+<kbd>+</kbd> / <kbd>−</kbd> / <kbd>0</kbd></td><td>Zoom; <kbd>Ctrl</kbd>+<kbd>0</kbd> ajusta al ancho.</td></tr>
+  <tr><td>Botón derecho</td><td>Pinta con el otro color.</td></tr>
+  <tr><td><kbd>Mayús</kbd> + esquina</td><td>Escalar la imagen sin mantener la proporción.</td></tr>
+  <tr><td><kbd>Mayús</kbd> + girar</td><td>Girar de 15 en 15 grados.</td></tr>
+  <tr><td><kbd>Mayús</kbd> + línea azul</td><td>Cambiar el largo punto a punto en vez de por milímetros.</td></tr>
+</table>
+<div class="tip">Arrastra un fichero de imagen desde el Explorador a la ventana para insertarlo.</div>
+</section>
+
+<section id="problemas">
+<h2>Si algo no funciona</h2>
+<h3>Sale el papel en blanco</h3>
+<p>Si la impresora está conectada por <strong>USB</strong>, cambia a Bluetooth: la T02 no imprime por USB. Si ya es
+  Bluetooth, comprueba que el rollo está bien puesto (el papel térmico solo marca por una cara).</p>
+<h3>No aparece la impresora</h3>
+<ul>
+  <li>Comprueba que está encendida y pulsa <span class="i">&#xE72C;</span> para buscar otra vez.</li>
+  <li>Si está conectada a otro aparato (el móvil, por ejemplo), no se anuncia: desconéctala de él.</li>
+  <li>Tras usarla, Windows mantiene la conexión un rato y la impresora deja de anunciarse; si ya estaba en la lista,
+    se puede usar igualmente.</li>
+</ul>
+<h3>«La impresora no tiene papel» o «la tapa está abierta»</h3>
+<p>Pon un rollo o cierra la tapa y vuelve a imprimir. Con la tapa abierta la impresora también dice que no hay papel.</p>
+<h3>«Enviado, sin confirmación»</h3>
+<p>La impresora no avisó del final. Suele imprimir igual; si no ha salido nada, revisa el papel y la conexión.</p>
+<h3>El modelo no es el correcto</h3>
+<p>Elígelo a mano en la lista de modelos. Se recordará para esa impresora.</p>
+</section>
+
+<section id="acerca">
+<h2>Acerca de</h2>
+<p><strong>PhomemoPaint</strong>, de XWolfOverride. Licencia MIT.</p>
+<p>El protocolo de las impresoras se ha tomado de los proyectos libres
+  <a href="https://github.com/vivier/phomemo-tools">phomemo-tools</a> y
+  <a href="https://github.com/mitchelloharawild/phomemo-protocol">phomemo-protocol</a>, completado con pruebas.</p>
+<p class="muted">El idioma sigue al de Windows; para forzarlo, define la variable de entorno
+  <code>PHOMEMOPAINT_LANG=es</code> o <code>en</code>. Los ajustes se guardan en
+  <code>%APPDATA%\PhomemoPaint\settings.json</code>.</p>
+</section>
+
+</main>
+</body>
+</html>

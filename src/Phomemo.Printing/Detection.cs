@@ -59,6 +59,8 @@ public enum DetectionSource
     None,
     UsbId,
     BluetoothName,
+    /// <summary>Por el prefijo del número de serie (requiere consultar a la impresora).</summary>
+    SerialNumber,
 }
 
 /// <summary>Modelo sugerido para un puerto y de dónde sale la sugerencia.</summary>

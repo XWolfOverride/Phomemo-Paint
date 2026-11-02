@@ -10,13 +10,17 @@ y sin emparejar.
 
 - Lienzo con el ancho exacto del cabezal de la impresora (T02: 384 puntos = 48 mm) y el alto
   que tú elijas; regla en milímetros en los bordes.
-- Pincel blanco o negro con tamaño ajustable.
+- Pincel blanco o negro con tamaño ajustable; cada dibujo es un objeto que se puede mover hasta fijarlo.
+- Herramienta cursor para mover objetos sin pintar por error.
 - Pegar o insertar imágenes (PNG, JPG, BMP, GIF) y moverlas, escalarlas y girarlas con los
   tiradores; se pasan a blanco y negro con tramado o umbral.
+- Textos en un cuadro ajustable, con fuente, tamaño, negrita, cursiva, subrayado y alineación, editables hasta fijarlos.
 - Solo se imprime hasta la última línea dibujada, para no gastar papel.
 - Busca impresoras Bluetooth y detecta el modelo por su nombre o por el identificador USB del
   puerto; avisa si el ancho cambia.
-- Muestra lo que dice la impresora: terminado, batería, sin papel, tapa abierta…
+- Ayuda completa en español e inglés (F1 abre la sección de lo que tienes bajo el ratón).
+- Muestra lo que dice la impresora: terminado, batería, sin papel, tapa abierta…, y un panel
+  con su modelo, número de serie, firmware y batería (se actualiza cada 5 minutos).
 - Patrón de calibración y diagnóstico de señales para estudiar la impresora.
 
 Modelos: T02, M02, M02 Pro, M02S, M110, M120, M220, M421 y, de forma experimental, D30,
@@ -57,6 +61,10 @@ copy PhomemoPaint.exe $HOME\bin
 $p = [Environment]::GetEnvironmentVariable("Path", "User")
 [Environment]::SetEnvironmentVariable("Path", "$p;$HOME\bin", "User")
 ```
+
+## Ejecutar en desarrollo
+
+Con el SDK instalado, `run.cmd` lanza la aplicación desde el código con doble clic.
 
 ## Idioma
 

@@ -3,4 +3,5 @@
   <Project Path="src/Phomemo.Printing.Windows/Phomemo.Printing.Windows.csproj" />
   <Project Path="src/PhomemoPaint/PhomemoPaint.csproj" />
   <Project Path="tests/Phomemo.Printing.Tests/Phomemo.Printing.Tests.csproj" />
+  <Project Path="tests/PhomemoPaint.Tests/PhomemoPaint.Tests.csproj" />
 </Solution>

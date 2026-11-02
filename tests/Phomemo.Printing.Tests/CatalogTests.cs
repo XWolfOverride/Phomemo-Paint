@@ -37,10 +37,29 @@ public class CatalogTests
     [InlineData("Mr.in_M02", "M02")]
     [InlineData("T02", "T02")]
     [InlineData("M832-1234", "M832")]
-    public void DetectsByBluetoothName(string name, string expected)
+    [InlineData("M832T", "M832T")]
+    [InlineData("M03", "M03")]
+    [InlineData("Unknown", null)]
+    public void DetectsByBluetoothName(string name, string? expected)
     {
         var result = ModelDetector.Detect(new PortInfo("COM5", BluetoothName: name));
         Assert.Equal(expected, result.Model?.Id);
+    }
+
+    [Theory]
+    [InlineData("Q114XXXXXXXXXXX", "T02")]
+    [InlineData("M001XXXXXXXXXXX", "M02")]
+    [InlineData("Z999XXXXXXXXXXX", null)]
+    [InlineData("Q1", null)]
+    [InlineData(null, null)]
+    public void DetectsBySerialPrefix(string? serial, string? expected) =>
+        Assert.Equal(expected, PrinterCatalog.FindBySerialNumber(serial)?.Id);
+
+    [Fact]
+    public void SerialPrefixesPointToExistingModels()
+    {
+        foreach (var id in PrinterCatalog.SerialPrefixes.Values)
+            Assert.NotNull(PrinterCatalog.Find(id));
     }
 
     [Fact]

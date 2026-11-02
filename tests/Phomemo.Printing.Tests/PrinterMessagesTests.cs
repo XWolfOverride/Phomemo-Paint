@@ -41,6 +41,23 @@ public class PrinterMessagesTests
         Assert.Equal(kind, Assert.Single(PrinterMessages.Parse(data)).Kind);
 
     [Fact]
+    public void InfoGathersAndMergesReadings()
+    {
+        byte[] first = [0x1A, 0x08, .. "Q114ABCDEFGHIJK"u8, 0x1A, 0x07, 0x01, 0x00, 0x00, 0x1A, 0x04, 0x50, 0x1A, 0x06, 0x89];
+        var info = PrinterInfo.From(first);
+
+        Assert.Equal("Q114ABCDEFGHIJK", info.SerialNumber);
+        Assert.Equal("1.0.0", info.Firmware);
+        Assert.Equal(80, info.BatteryPercent);
+        Assert.False(info.PaperOut);
+        Assert.Equal("T02", info.ModelFromSerial?.Id);
+
+        var merged = info.Merge(PrinterInfo.From([0x1A, 0x04, 0x46]));
+        Assert.Equal(70, merged.BatteryPercent);
+        Assert.Equal("Q114ABCDEFGHIJK", merged.SerialNumber);
+    }
+
+    [Fact]
     public void LowBatteryCodesBecomePercentages() =>
         Assert.Equal(5, Assert.Single(PrinterMessages.Parse([0x1A, 0x04, 0xA2])).Value);
 

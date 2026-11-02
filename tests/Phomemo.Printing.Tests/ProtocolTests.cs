@@ -16,8 +16,12 @@ public class ProtocolTests
 
         var bytes = Concat(ProtocolFactory.For(model).BuildJob(image, model, PrintOptions.Default));
 
-        // Secuencia probada en una T02 por Bluetooth.
-        byte[] header = [0x1B, 0x40, 0x1B, 0x61, 0x00, 0x1F, 0x11, 0x37, 0x64, 0x1F, 0x11, 0x02, 0x04];
+        // Cabecera ampliada: densidad, coeficiente, papel en rollo y sin compresión.
+        byte[] header =
+        [
+            0x1B, 0x40, 0x1F, 0x11, 0x02, 0x03, 0x1F, 0x11, 0x37, 0x64, // densidad 3 (la de la T02)
+            0x1F, 0x11, 0x0B, 0x1F, 0x11, 0x35, 0x00,
+        ];
         byte[] marker = [0x1D, 0x76, 0x30, 0x00, 48, 0, 10, 0];
         byte[] footer = [0x1B, 0x64, 4];
         Assert.Equal(header, bytes[..header.Length]);
@@ -25,6 +29,19 @@ public class ProtocolTests
         Assert.Equal(0x80, bytes[header.Length + 8]);
         Assert.Equal(header.Length + marker.Length + 480 + footer.Length, bytes.Length);
         Assert.Equal(footer, bytes[^footer.Length..]);
+    }
+
+    [Theory]
+    [InlineData("T02", null, 3)]
+    [InlineData("M02", null, 4)]
+    [InlineData("T02", 2, 2)]
+    public void DarknessComesFromOptionsThenModelThenFamily(string id, int? darkness, int expected)
+    {
+        var model = PrinterCatalog.Get(id);
+        var bytes = Concat(ProtocolFactory.For(model).BuildJob(new MonoBitmap(model.HeadWidthDots, 1), model,
+            PrintOptions.Default with { Darkness = darkness }));
+
+        Assert.Equal(new byte[] { 0x1F, 0x11, 0x02, (byte)expected }, bytes[2..6]);
     }
 
     [Fact]
@@ -102,10 +119,36 @@ public class ProtocolTests
         Assert.True(chunks.Sum(c => c.Length) > image.Data.Length);
     }
 
+    [Theory]
+    [MemberData(nameof(CompressedModels))]
+    public void ModelsThatNeedCompressionRefuseToBuildAJob(string id)
+    {
+        var model = PrinterCatalog.Get(id);
+        var image = new MonoBitmap(model.HeadWidthDots, 8);
+
+        Assert.False(model.CanPrint);
+        Assert.Throws<NotSupportedException>(() => ProtocolFactory.For(model).BuildJob(image, model, PrintOptions.Default));
+    }
+
+    [Fact]
+    public void OnlyDetectedA4ModelsNeedCompression()
+    {
+        Assert.All(PrinterCatalog.All.Where(m => m.RequiresCompression), m => Assert.Equal(ProtocolFamily.M832, m.Family));
+        Assert.True(PrinterCatalog.Get("M832").CanPrint);
+        Assert.False(PrinterCatalog.Get("G100").CanPrint);
+    }
+
     public static TheoryData<string> AllModels()
     {
         var data = new TheoryData<string>();
-        foreach (var m in PrinterCatalog.All) data.Add(m.Id);
+        foreach (var m in PrinterCatalog.All.Where(m => m.CanPrint)) data.Add(m.Id);
+        return data;
+    }
+
+    public static TheoryData<string> CompressedModels()
+    {
+        var data = new TheoryData<string>();
+        foreach (var m in PrinterCatalog.All.Where(m => !m.CanPrint)) data.Add(m.Id);
         return data;
     }
 }

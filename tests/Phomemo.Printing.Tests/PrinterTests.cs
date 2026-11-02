@@ -84,6 +84,21 @@ public class PrinterTests
     }
 
     [Fact]
+    public async Task ReadyQueryAsksForPaperAndCover()
+    {
+        // Respuesta observada con la tapa abierta: «sin papel» y «tapa abierta».
+        var output = new MemoryStream();
+        await using var transport = new StreamTransport(output, new LateStream([0x1A, 0x06, 0x88, 0x1A, 0x05, 0x99]));
+        var printer = new PhomemoPrinter(transport, PrinterCatalog.Get("T02"));
+
+        var info = await printer.QueryReadyAsync();
+
+        Assert.Equal(new byte[] { 0x1F, 0x11, 0x11, 0x1F, 0x11, 0x12 }, output.ToArray());
+        Assert.True(info.PaperOut);
+        Assert.True(info.CoverOpen);
+    }
+
+    [Fact]
     public async Task QueryReturnsResponse()
     {
         var output = new MemoryStream();

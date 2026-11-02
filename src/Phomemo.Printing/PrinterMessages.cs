@@ -32,6 +32,48 @@ public enum PrinterMessageKind
 /// <summary>Un mensaje de la impresora. <see cref="Value"/> y <see cref="Text"/> según el tipo.</summary>
 public sealed record PrinterMessage(PrinterMessageKind Kind, int Value = 0, string? Text = null);
 
+/// <summary>Datos de la impresora reunidos de sus respuestas; null = no lo ha dicho.</summary>
+public sealed record PrinterInfo(
+    string? SerialNumber,
+    string? Firmware,
+    int? BatteryPercent,
+    bool? PaperOut,
+    bool? CoverOpen,
+    bool? Overheated,
+    byte[] Response)
+{
+    /// <summary>Modelo según el prefijo del número de serie.</summary>
+    public PrinterModel? ModelFromSerial => PrinterCatalog.FindBySerialNumber(SerialNumber);
+
+    public static PrinterInfo From(byte[] response)
+    {
+        string? serial = null, firmware = null;
+        int? battery = null;
+        bool? paperOut = null, coverOpen = null, hot = null;
+        foreach (var m in PrinterMessages.Parse(response))
+        {
+            switch (m.Kind)
+            {
+                case PrinterMessageKind.SerialNumber when !string.IsNullOrWhiteSpace(m.Text): serial = m.Text.Trim(); break;
+                case PrinterMessageKind.Firmware: firmware = m.Text; break;
+                case PrinterMessageKind.Battery: battery = m.Value; break;
+                case PrinterMessageKind.PaperOut: paperOut = true; break;
+                case PrinterMessageKind.PaperOk: paperOut = false; break;
+                case PrinterMessageKind.CoverOpen: coverOpen = true; break;
+                case PrinterMessageKind.CoverClosed: coverOpen = false; break;
+                case PrinterMessageKind.Overheated: hot = true; break;
+                case PrinterMessageKind.TemperatureOk: hot = false; break;
+            }
+        }
+        return new PrinterInfo(serial, firmware, battery, paperOut, coverOpen, hot, response);
+    }
+
+    /// <summary>Combina con una lectura más reciente: lo nuevo manda, lo que falte se conserva.</summary>
+    public PrinterInfo Merge(PrinterInfo newer) => new(
+        newer.SerialNumber ?? SerialNumber, newer.Firmware ?? Firmware, newer.BatteryPercent ?? BatteryPercent,
+        newer.PaperOut ?? PaperOut, newer.CoverOpen ?? CoverOpen, newer.Overheated ?? Overheated, newer.Response);
+}
+
 /// <summary>
 /// Interpreta las respuestas <c>1A tt …</c> de la familia M02 (y otras del mismo fabricante).
 /// Significados en DOC/protocolos.md.

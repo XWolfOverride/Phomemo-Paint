@@ -12,6 +12,7 @@
     <Version>0.2.0</Version>
     <Authors>XWolfOverride</Authors>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationIcon>..\..\Phome.ico</ApplicationIcon>
 
     <!-- WinForms no admite Native AOT: un unico .exe que depende del runtime de .NET instalado,
          con Phomemo.Printing.dll dentro. -->
@@ -20,6 +21,28 @@
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="PhomemoPaint.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Icono de las ventanas (el del ensamblado lo pone ApplicationIcon). -->
+    <EmbeddedResource Include="..\..\Phome.ico" LogicalName="Phome.ico" />
+    <!-- Ayuda: se copia a %TEMP% y se abre en el navegador (HelpViewer). -->
+    <!-- WithCulture="false": si no, "ayuda.es.html" y "help.en.html" irían a ensamblados satélite. -->
+    <EmbeddedResource Include="Help\**\*" LogicalName="help/%(RecursiveDir)%(Filename)%(Extension)" WithCulture="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Para que Visual Studio los abra en el diseñador sin tener que detectarlo antes. -->
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PrinterInfoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Phomemo.Printing\Phomemo.Printing.csproj" />
