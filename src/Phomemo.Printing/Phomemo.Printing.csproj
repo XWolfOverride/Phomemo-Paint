@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Phomemo.Printing</RootNamespace>
-    <Version>0.2.0</Version>
+    <Version>1.0.0</Version>
     <Authors>XWolfOverride</Authors>
 
     <!-- Portable: sin WinForms ni APIs de Windows. No se publica con AOT, pero los analizadores

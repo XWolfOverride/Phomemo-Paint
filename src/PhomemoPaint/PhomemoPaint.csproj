@@ -9,7 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>PhomemoPaint</AssemblyName>
     <RootNamespace>PhomemoPaint</RootNamespace>
-    <Version>0.2.0</Version>
+    <Version>1.0.0</Version>
     <Authors>XWolfOverride</Authors>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ApplicationIcon>..\..\Phome.ico</ApplicationIcon>

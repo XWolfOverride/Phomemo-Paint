@@ -6,7 +6,7 @@ de ancho, 203 dpi).
 
 ## Estado actual (2026-11-02)
 
-- v0.2: 167 pruebas xUnit en verde (127 de impresión y 40 del editor); capa `Phomemo.Printing` (catálogo de 75 modelos, los que requieren compresión LZO sin poder imprimir), transporte Bluetooth LE en
+- v1.0: 167 pruebas xUnit en verde (127 de impresión y 40 del editor); capa `Phomemo.Printing` (catálogo de 75 modelos, los que requieren compresión LZO sin poder imprimir), transporte Bluetooth LE en
   `Phomemo.Printing.Windows`, editor completo (cursor, pincel, texto, imágenes flotantes con tiradores,
   reglas, deshacer, exportar/abrir PNG, patrón de calibración, diagnóstico de señales),
   `build.ps1` y `run.cmd`.
